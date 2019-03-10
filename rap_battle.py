@@ -54,8 +54,15 @@ elif background == 4:
 # urRapper['inv'].append(GucciBankroll)
 # urRapper['inv'].append(NewLamborgini)
 
-s = 1
-for i in urRapper['bars']:
-    print(" >[", s, "]: ", i)
-    s += 1
-a = int(input('Выбери панчлайн: '))
+while True:
+    print("You have: ")
+    matchBars_1 = []
+    matchBars_2 = []
+    iBars = 1
+    for bar in urRapper['bars']:
+        matchBars_1.append(iBars)
+        matchBars_2.append(bar)
+        print(" >[", iBars, "]: ", bar)
+        iBars += 1
+    matchBars = list(zip(matchBars_1, matchBars_2))
+    ansBars = int(input("Choose a punchline: "))

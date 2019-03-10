@@ -1,19 +1,4 @@
 import random
-
-urRaper = {
-    'inv': [],
-    'bars': [],
-    'class': 'none'
-}
-
-print("1. Одинокий Гангстер")
-print("2. Миллионер из трущоб")
-print("3. Любитель игры в Майнкрафт")
-print("4. Ценитель Х/Ф Зелёный Слоник")
-
-background = int(input)
-===========================================
-import random
 while True:
     GucciGlock = {
         'id': '100',
@@ -38,7 +23,7 @@ while True:
     'slot3': 'none'
     }
     loot = [GucciGlock, GucciBankroll, NewLamborgini]
-    a = random.randint(0, len(loot)-2)
+    a = random.randint(0, len(loot)-1)
     shop['slot1'] = loot[a]
     loot.remove(loot[a])
     b = random.randint(0, len(loot)-1)
