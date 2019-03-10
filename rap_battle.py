@@ -24,6 +24,7 @@ urRapper = {
     'inv': [],
     'bars': [],
     'bg': 'none'
+    'money': 3000
 }
 
 gangstaTheme = [punchline_1, punchline_4]
