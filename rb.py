@@ -45,7 +45,7 @@ while True:
     c = random.randint(0, len(loot)-1)
     shop['slot3'] = loot[c]
 
-    print('Выберите вещи для покупки!')
+    print('\n''Выберите вещи для покупки!')
     print('1.', (shop['slot1']['bars']))
     print('2.', (shop['slot2']['bars']))
     print('3.', (shop['slot3']['bars']))
@@ -68,3 +68,7 @@ while True:
             print('пошёл в жопу')
     else:
         break
+    s = 1
+    for i in urRapper['inv']:
+        print('\n'" >[", s, "]: ", i['bars'])
+        s += 1
