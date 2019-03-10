@@ -1,43 +1,29 @@
 import random
 
-GucciGlock = {
-    'name': 'GucciGlock',
-    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок'
-}
-
-GucciBankroll = {
-    'name': 'GucciBankroll',
-    'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти'
-}
-
-NewLamborgini = {
-    'name': 'NewLamborgini',
-    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке'
-}
 punchline_1 = {
     'id': 1,
-    'bars': 'Я сос',
+    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
     'theme': 'gangsta'
 }
 punchline_2 = {
     'id': 2,
-    'bars': 'Я сосу',
+    'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
     'theme': 'million'
 }
 punchline_3 = {
     'id': 3,
-    'bars': 'Я сосу би',
+    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
     'theme': 'minecraft'
 }
 punchline_4 = {
     'id': 4,
-    'bars': 'Я сосу бибу',
+    'bars': 'Я биссексуал',
     'theme': 'elephant'
 }
 urRapper = {
     'inv': [],
     'bars': [],
-    'theme': []
+    'bg': 'none'
 }
 
 gangstaTheme = [punchline_1, punchline_4]
@@ -50,30 +36,26 @@ print("2. Миллионер из трущоб")
 print("3. Любитель игры в Майнкрафт")
 print("4. Ценитель Х/Ф Зелёный Слоник")
 
-background = input('Выберите своё прошлое: ')
+background = int(input('Выберите своё прошлое: '))
 if background == 1:
-    urRapper['theme'] = 'gangsta'
-    urRapper['bars'].append(gangstaTheme[0])
+    urRapper['bg'] = 'gangsta'
+    urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
 elif background == 2:
-    urRapper['theme'] = 'million'
-    urRapper['bars'].append(millionTheme[0])
+    urRapper['bg'] = 'million'
+    urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
 elif background == 3:
-    urRapper['theme'] = 'minecraft'
-    urRapper['bars'].append(minecraftTheme[0])
+    urRapper['bg'] = 'minecraft'
+    urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)]['bars'])
 elif background == 4:
-    urRapper['theme'] = 'elephant'
-    urRapper['bars'].append(elephantTheme[0])
+    urRapper['bg'] = 'elephant'
+    urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)]['bars'])
 
-print(urRapper['bars'])
-print(urRapper['theme'])
-
-urRapper['inv'].append(GucciGlock)
-urRapper['inv'].append(GucciBankroll)
-urRapper['inv'].append(NewLamborgini)
+# urRapper['inv'].append(GucciGlock)
+# urRapper['inv'].append(GucciBankroll)
+# urRapper['inv'].append(NewLamborgini)
 
 s = 1
-for i in urRapper['inv']:
-    print(" >[", s, "]: ", i['bars'])
+for i in urRapper['bars']:
+    print(" >[", s, "]: ", i)
     s += 1
-
 a = int(input('Выбери панчлайн: '))
