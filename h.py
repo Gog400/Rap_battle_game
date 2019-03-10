@@ -1,7 +1,5 @@
 import random
 
-enemy {}
-
 name = input('Введите свой реперский ник: ')
 print('''
 1. Одинокий Гангстер
@@ -34,3 +32,24 @@ elif background == '4':
     3. Полковник
     ''')
     background1 = input('Выберите своего любимого перса: ')
+--------------------------
+yungleo = {
+    'id': 50,
+    'name': 'Yung Leo',
+    'bars': [punchline_2]
+}
+fiftydraem = {
+    'id' = 51,
+    'name': 'Fifty Draem'
+    'bars': [punchline_1]
+}
+creeper = {
+    'id': 52,
+    'name': 'Kriper95',
+    'bars': [punchline_3]
+}
+Lich = {
+    'id': 53,
+    'name': 'Lichinus',
+    'bars': [punchline_4]
+}
