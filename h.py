@@ -78,3 +78,5 @@ while True:
             urRapper['inv'].append(NewLamborgini)
         elif money =< '20':
             print('пошёл в жопу')
+    if buy == '0':
+        break
