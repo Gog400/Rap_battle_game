@@ -30,25 +30,27 @@ while True:
     shop['slot2'] = loot[b]
     loot.remove(loot[b])
     c = random.randint(0, len(loot)-1)
+    shop['slot3'] = loot[c]
     print('Выберите вещи для покупки!')
-    print('1.', shop['slot1'])
-    print('2.', shop['slot2'])
-    print('3.', shop['slot3'])
+    print('1.', (shop['slot1']['bars']),
+    print('2.', (shop['slot2']['bars']),
+    print('3.', (shop['slot3']['bars']),
+
     buy = input('Введите число: ')
     if buy == '1':
         if money >= '50':
             urRapper['inv'].append(GucciGlock)
         elif money <= '50':
             print('пошёл в жопу') ##вещи пишем в самом начале
-    if buy == '2': ##urraper условное обозначение потом поменяем
+    elif buy == '2': ##urraper условное обозначение потом поменяем
         if money >= '10':
             urRapper['inv'].append(GucciBankroll)
         elif money <= '10':
             print('пошёл в жопу')
-    if buy == '3':
+    elif buy == '3':
         if money >= '20':
             urRapper['inv'].append(NewLamborgini)
         elif money <= '20':
             print('пошёл в жопу')
-    if buy == '0':
+    elif buy == '0':
         break
