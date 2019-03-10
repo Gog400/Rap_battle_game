@@ -66,6 +66,7 @@ elif background == 4:
     print(urRapper['bars'])
     print(urRapper['theme'])
 
+
 urRapper['inv'].append(GucciGlock)
 urRapper['inv'].append(GucciBankroll)
 urRapper['inv'].append(NewLamborgini)
