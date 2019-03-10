@@ -55,26 +55,26 @@ Lich = {
 }
 =========================
 while True:
-print('''
-Выберите вещи для покупки!
-1. вещь
-2. вещь2
-3. вещь3
-0. Выход
-''')
-buy = input('Введите число: ')
-if buy == '1':
-    if money >= '50':
-        urRapper['inv'].append(вещь)
-    if money =< '50':
-        print('пошёл в жопу') ##вещи пишем в самом начале
-if buy == '2': ##urraper условное обозначение потом поменяем
-    if money >= '10':
-        urRapper['inv'].append(вещь2)
-    if money =< '10':
-        print('пошёл в жопу')
-if buy == '3':
-    if money >= '20':
-        urRapper['inv'].append(вещь3)
-    if money =< '20':
-        print('пошёл в жопу')
+    print('''
+    Выберите вещи для покупки!
+    1. вещь
+    2. вещь2
+    3. вещь3
+    0. Выход
+    ''')
+    buy = input('Введите число: ')
+    if buy == '1':
+        if money >= '50':
+            urRapper['inv'].append(вещь)
+        elif money =< '50':
+            print('пошёл в жопу') ##вещи пишем в самом начале
+    if buy == '2': ##urraper условное обозначение потом поменяем
+        if money >= '10':
+            urRapper['inv'].append(вещь2)
+        elif money =< '10':
+            print('пошёл в жопу')
+    if buy == '3':
+        if money >= '20':
+            urRapper['inv'].append(вещь3)
+        elif money =< '20':
+            print('пошёл в жопу')
