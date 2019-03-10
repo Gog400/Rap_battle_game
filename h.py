@@ -1,7 +1,5 @@
 import random
 
-enemy {}
-
 name = input('Введите свой реперский ник: ')
 print('''
 1. Одинокий Гангстер
@@ -34,3 +32,49 @@ elif background == '4':
     3. Полковник
     ''')
     background1 = input('Выберите своего любимого перса: ')
+--------------------------
+yungleo = {
+    'id': 50,
+    'name': 'Yung Leo',
+    'bars': [punchline_2]
+}
+fiftydraem = {
+    'id' = 51,
+    'name': 'Fifty Draem'
+    'bars': [punchline_1]
+}
+creeper = {
+    'id': 52,
+    'name': 'Kriper95',
+    'bars': [punchline_3]
+}
+Lich = {
+    'id': 53,
+    'name': 'Lichinus',
+    'bars': [punchline_4]
+}
+=========================
+while True:
+print('''
+Выберите вещи для покупки!
+1. вещь
+2. вещь2
+3. вещь3
+0. Выход
+''')
+buy = input('Введите число: ')
+if buy == '1':
+    if money >= '50':
+        urRapper['inv'].append(вещь)
+    if money =< '50':
+        print('пошёл в жопу') ##вещи пишем в самом начале
+if buy == '2': ##urraper условное обозначение потом поменяем
+    if money >= '10':
+        urRapper['inv'].append(вещь2)
+    if money =< '10':
+        print('пошёл в жопу')
+if buy == '3':
+    if money >= '20':
+        urRapper['inv'].append(вещь3)
+    if money =< '20':
+        print('пошёл в жопу')
