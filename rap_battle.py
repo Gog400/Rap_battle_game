@@ -40,10 +40,10 @@ urRapper = {
     'theme': []
 }
 
-gangstaTheme = [punchline_1]
-millionTheme = [punchline_2]
-minecraftTheme = [punchline_3]
-elephantTheme = [punchline_4]
+gangstaTheme = [punchline_1, punchline_4]
+millionTheme = [punchline_2, punchline_3]
+minecraftTheme = [punchline_3, punchline_2]
+elephantTheme = [punchline_4, punchline_1]
 
 print("1. Одинокий Гангстер")
 print("2. Миллионер из трущоб")
@@ -52,20 +52,20 @@ print("4. Ценитель Х/Ф Зелёный Слоник")
 
 background = input('Выберите своё прошлое: ')
 if background == 1:
-    urRapper['theme'] = gangstaTheme['theme']
-    urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
+    urRapper['theme'] = 'gangsta'
+    urRapper['bars'].append(gangstaTheme[0])
 elif background == 2:
-    urRapper['theme'] = millionTheme['theme']
-    urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
+    urRapper['theme'] = 'million'
+    urRapper['bars'].append(millionTheme[0])
 elif background == 3:
-    urRapper['theme'] = minecraftTheme['theme']
-    urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)]['bars'])
+    urRapper['theme'] = 'minecraft'
+    urRapper['bars'].append(minecraftTheme[0])
 elif background == 4:
-    urRapper['theme'] = elephantTheme['theme']
-    urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)]['bars'])
-    print(urRapper['bars'])
-    print(urRapper['theme'])
+    urRapper['theme'] = 'elephant'
+    urRapper['bars'].append(elephantTheme[0])
 
+print(urRapper['bars'])
+print(urRapper['theme'])
 
 urRapper['inv'].append(GucciGlock)
 urRapper['inv'].append(GucciBankroll)
