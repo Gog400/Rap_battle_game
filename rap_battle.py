@@ -148,7 +148,7 @@ while True:
             enemy = creeper['name']
         print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy)
     if daily_action == 3:
-
+        while True:
             loot = [GucciGlock, GucciBankroll, NewLamborgini]
 
             a = random.randint(0, len(loot)-1)
