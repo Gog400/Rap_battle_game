@@ -23,7 +23,7 @@ punchline_4 = {
 urRapper = {
     'inv': [],
     'bars': [],
-    'bg': 'none'
+    'bg': 'none',
     'money': 3000
 }
 

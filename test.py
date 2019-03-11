@@ -55,13 +55,9 @@ Lich = {
 }
 =========================
 while True:
-    print('''
-    Выберите вещи для покупки!
-    1. вещь
-    2. вещь2
-    3. вещь3
-    0. Выход
-    ''')
+loot = random.int(GucciGlock, GucciBankroll, NewLamborgini)
+print('Выберите вещи для покупки!')
+print('')
     buy = input('Введите число: ')
     if buy == '1':
         if money >= '50':
