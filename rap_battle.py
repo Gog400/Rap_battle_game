@@ -1,5 +1,6 @@
 import random
 while True:
+##словари
     GucciGlock = {
         'id': '100',
         'name': 'GucciGlock',
@@ -64,7 +65,9 @@ while True:
     millionTheme = [punchline_2, punchline_3]
     minecraftTheme = [punchline_3, punchline_2]
     elephantTheme = [punchline_4, punchline_1]
+
     name = input('Введите своё имя: ')
+
     print('====================')
     print("1. Одинокий Гангстер")
     print("2. Миллионер из трущоб")
@@ -117,6 +120,7 @@ while True:
     print('2. Пойти в стриптиз бар') ##https://youtu.be/ielVW4MVOrM
     print('3. Пойти в магазин')
     print('4. Сделать суицид')
+    print('5. Арендовать студию звукозаписи')
     daily_action = int(input('Ну что будем делать?: '))
     if daily_action == 3:
         while True:
