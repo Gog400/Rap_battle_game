@@ -1,132 +1,120 @@
 import random
-while True:
 ##словари
-    punchline_1 = {
-        'id': 1,
-        'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
-        'theme': 'gangsta'
-    }
-    punchline_2 = {
-        'id': 2,
-        'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
-        'theme': 'million'
-    }
-    punchline_3 = {
-        'id': 3,
-        'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
-        'theme': 'minecraft'
-    }
-    punchline_4 = {
-        'id': 4,
-        'bars': 'Я биссексуал',
-        'theme': 'elephant'
-    }
-    yungleo = {
-        'id': 50,
-        'name': 'Yung Leo',
-        'bars': [punchline_2]
-    }
-    fiftydraem = {
-        'id': 51,
-        'name': 'Fifty Draem',
-        'bars': [punchline_1]
-    }
-    creeper = {
-        'id': 52,
-        'name': 'Kriper95',
-        'bars': [punchline_3]
-    }
-    Lich = {
-        'id': 53,
-        'name': 'Lichinus',
-        'bars': [punchline_4]
+punchline_1 = {
+    'id': 1,
+    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
+    'theme': 'gangsta',
+    'points': 5
+}
+punchline_2 = {
+    'id': 2,
+    'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
+    'theme': 'million',
+    'points': 5
+}
+punchline_3 = {
+    'id': 3,
+    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'theme': 'minecraft',
+    'points': 5
+}
+punchline_4 = {
+    'id': 4,
+    'bars': 'Я биссексуал',
+    'theme': 'elephant',
+    'points': 5
+}
+yungleo = {
+    'id': 50,
+    'name': 'Yung Leo',
+    'bars': [punchline_2]
+}
+fiftydraem = {
+    'id': 51,
+    'name': 'Fifty Draem',
+    'bars': [punchline_1]
+}
+creeper = {
+    'id': 52,
+    'name': 'Kriper95',
+    'bars': [punchline_3]
+}
+Lich = {
+    'id': 53,
+    'name': 'Lichinus',
+    'bars': [punchline_4]
 
 }
-    GucciGlock = {
-        'id': '100',
-        'name': 'GucciGlock',
-        'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
-        'cost': 50
-    }
+GucciGlock = {
+    'id': '100',
+    'name': 'GucciGlock',
+    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
+    'cost': 50
+}
+GucciBankroll = {
+    'id': '101',
+    'name': 'GucciBankroll',
+    'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
+    'cost': 75
+}
+NewLamborgini = {
+    'id': '102',
+    'name': 'NewLamborgini',
+    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'cost': 320
+}
+urRapper = {
+    'inv': [],
+    'bars': [],
+    'bg': 'none',
+    'title': 'none',
+    'money': 3000
+}
 
-    GucciBankroll = {
-        'id': '101',
-        'name': 'GucciBankroll',
-        'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
-        'cost': 75
-    }
+gangstaTheme = [punchline_1, punchline_4]
+millionTheme = [punchline_2, punchline_3]
+minecraftTheme = [punchline_3, punchline_2]
+elephantTheme = [punchline_4, punchline_1]
 
-    NewLamborgini = {
-        'id': '102',
-        'name': 'NewLamborgini',
-        'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
-        'cost': 320
-    }
-    urRapper = {
-        'inv': [],
-        'bars': [],
-        'bg': 'none',
-        'title': 'none',
-        'money': 3000
-    }
-    shop = {
-    'slot1': 'none',
-    'slot2': 'none',
-    'slot3': 'none'
-    }
+name = input('Введите своё имя: ')
 
-    gangstaTheme = [punchline_1, punchline_4]
-    millionTheme = [punchline_2, punchline_3]
-    minecraftTheme = [punchline_3, punchline_2]
-    elephantTheme = [punchline_4, punchline_1]
+print('====================')
+print("1. Одинокий Гангстер")
+print("2. Миллионер из трущоб")
+print("3. Любитель игры в Майнкрафт")
+print("4. Ценитель Х/Ф Зелёный Слоник")
 
-    name = input('Введите своё имя: ')
+background = int(input('Выберите своё прошлое: '))
+if background == 1:
+    urRapper['bg'] = 'gangsta'
+    urRapper['title'] = 'старым гангстером.'
+    urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
+elif background == 2:
+    urRapper['bg'] = 'million'
+    urRapper['title'] = 'миллионером из трущоб.'
+    urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
+elif background == 3:
+    urRapper['bg'] = 'minecraft'
+    urRapper['title'] = 'любителем игры Minecraft.'
+    urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)]['bars'])
+elif background == 4:
+    urRapper['bg'] = 'elephant'
+    urRapper['title'] = 'любителем реального дерьма.'
+    urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)]['bars'])
+else:
+    print('\n''Что ты делаешь?')
 
-    print('====================')
-    print("1. Одинокий Гангстер")
-    print("2. Миллионер из трущоб")
-    print("3. Любитель игры в Майнкрафт")
-    print("4. Ценитель Х/Ф Зелёный Слоник")
-
-    background = int(input('Выберите своё прошлое: '))
-    if background == 1:
-        urRapper['bg'] = 'gangsta'
-        urRapper['title'] = 'старым гангстером.'
-        urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
-    elif background == 2:
-        urRapper['bg'] = 'million'
-        urRapper['title'] = 'миллионером из трущоб.'
-        urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
-    elif background == 3:
-        urRapper['bg'] = 'minecraft'
-        urRapper['title'] = 'любителем игры Minecraft.'
-        urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)]['bars'])
-    elif background == 4:
-        urRapper['bg'] = 'elephant'
-        urRapper['title'] = 'любителем реального дерьма.'
-        urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)]['bars'])
-    else:
-        print('\n''Что ты делаешь?')
-        continue
-    character_result = urRapper['title']
-    print('Вы', name, 'и являетесь', character_result)
+character_result = urRapper['title']
+print('Вы', name, 'и являетесь', character_result)
     # urRapper['inv'].append(GucciGlock)
     # urRapper['inv'].append(GucciBankroll)
     # urRapper['inv'].append(NewLamborgini)
 
-    while True:
-        print("You have: ")
-        matchBars_1 = []
-        matchBars_2 = []
-        iBars = 1
-        for bar in urRapper['bars']:
-            matchBars_1.append(iBars)
-            matchBars_2.append(bar)
-            print(" >[", iBars, "]: ", bar)
-            iBars += 1
-        matchBars = list(zip(matchBars_1, matchBars_2))
-        ansBars = int(input("Choose a punchline: "))
-        break
+while True:
+    # s = 1
+    # for i in urRapper['inv']:
+    #     print('\n'" >[", s, "]: ", i['bars'])
+    #     s += 1
 
     print('===========================')
     print('Настал новый день... Что будем делать сегодня? ;)')
@@ -136,19 +124,62 @@ while True:
     print('4. Сделать суицид')
     print('5. Арендовать студию звукозаписи')
     daily_action = int(input('Ну что будем делать?: '))
+
     if daily_action == 1:
         enemy_roll = random.randint(50,53)
         if enemy_roll == yungleo['id']:
-            enemy = yungleo['name']
-        if enemy_roll == fiftydraem['id']:
-            enemy = fiftydraem['name']
-        if enemy_roll == Lich['id']:
-            enemy = Lich['name']
-        if enemy_roll == creeper['id']:
-            enemy = creeper['name']
-        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy)
+            enemy = yungleo
+            coin = random.randint(0,1)
+            if coin == 0:
+                print("Жеребъевка проиграна. Вы ходите первым")
+                print("You have: ")
+                matchBars_1 = []
+                matchBars_2 = []
+                iBars = 1
+                for bar in urRapper['bars']:
+                    matchBars_1.append(iBars)
+                    matchBars_2.append(bar)
+                    print(" >[", iBars, "]: ", bar)
+                    iBars += 1
+                matchBars = list(zip(matchBars_1, matchBars_2))
+                ansBars = int(input("Choose a punchline: "))
+                r1Y = []
+                r2Y = []
+                r3Y = []
+                r1E = []
+                r2E = []
+                r3E = []
+
+                if ansBars == matchBars[ansBars - 1][0]:
+                    r1Y.append(matchBars[1][bar['points']])
+                    print(matchBars[ansBars - 1][1])
+                    print()
+                    break
+                elif ansBars == matchBars[ansBars - 1][0]:
+                    print(matchBars[ansBars - 1][1])
+                    break
+
+            elif coin == 1:
+                print("Жеребъевка выиграна. Вы ходите вторым")
+                print("Раунд противника: ")
+                r1E = enemy['bars'][random.randint(0, len(enemy['bars'])-1)]
+                print(r1E)
+
+        elif enemy_roll == fiftydraem['id']:
+            enemy = fiftydraem
+        elif enemy_roll == Lich['id']:
+            enemy = Lich
+        elif enemy_roll == creeper['id']:
+            enemy = creeper
+        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
     if daily_action == 3:
         while True:
+            shop = {
+            'slot1': 'none',
+            'slot2': 'none',
+            'slot3': 'none'
+            }
+
             loot = [GucciGlock, GucciBankroll, NewLamborgini]
 
             a = random.randint(0, len(loot)-1)
@@ -163,33 +194,33 @@ while True:
             shop['slot3'] = loot[c]
 
             print('\n''Выберите вещи для покупки!')
-            print('1.', (shop['slot1']['bars']))
-            print('2.', (shop['slot2']['bars']))
-            print('3.', (shop['slot3']['bars']))
+            print('1.', (shop['slot1']['name']))
+            print('2.', (shop['slot2']['name']))
+            print('3.', (shop['slot3']['name']))
             print('0. Выход') ##А выхода то нет!
 
             buy = int(input('Введите число: '))
+
             if buy == 1:
                 if urRapper['money'] >= shop['slot1']['cost']:
                     urRapper['inv'].append(shop['slot1'])
+                    shop['slot1'] = 'none'
                 else:
                     print('пошёл в жопу')
             elif buy == 2:
                 if urRapper['money'] >= shop['slot2']['cost']:
                     urRapper['inv'].append(shop['slot2'])
+                    shop['slot2'] = 'none'
                 else:
                     print('пошёл в жопу')
             elif buy == 3:
                 if urRapper['money'] >= shop['slot3']['cost']:
                     urRapper['inv'].append(shop['slot3'])
-            elif buy == 0:
-                continue
+                    shop['slot3'] = 'none'
             else:
                 print('что ты делаешь?')
-            s = 1
-            for i in urRapper['inv']:
-                print('\n'" >[", s, "]: ", i['bars'])
-                s += 1
+                break
+
     if daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
-        exit()
+        quit()
