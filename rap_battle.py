@@ -2,7 +2,7 @@ import random
 ##словари
 punchline_1 = {
     'id': 1,
-    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
+    'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'theme': 'gangsta',
     'points': 5
 }
@@ -48,7 +48,7 @@ Lich = {
 GucciGlock = {
     'id': '100',
     'name': 'GucciGlock',
-    'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
+    'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'cost': 50
 }
 GucciBankroll = {
@@ -71,6 +71,25 @@ urRapper = {
     'money': 3000
 }
 
+def battle_roundY():
+    r1Y = []
+    r2Y = []
+    r3Y = []
+    matchBars_1 = []
+    matchBars_2 = []
+    iBars = 1
+    for bar in urRapper['bars']:
+        matchBars_1.append(iBars)
+        matchBars_2.append(bar['bars'])
+        print(" >[", iBars, "]: ", bar)
+        iBars += 1
+
+    matchBars = list(zip(matchBars_1, matchBars_2))
+    ansBars = int(input("Choose a punchline: "))
+
+    if ansBars == matchBars[ansBars - 1][0]:
+        r1Y.append(matchBars[0][1]['points'])
+
 gangstaTheme = [punchline_1, punchline_4]
 millionTheme = [punchline_2, punchline_3]
 minecraftTheme = [punchline_3, punchline_2]
@@ -88,19 +107,19 @@ background = int(input('Выберите своё прошлое: '))
 if background == 1:
     urRapper['bg'] = 'gangsta'
     urRapper['title'] = 'старым гангстером.'
-    urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
+    urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)])
 elif background == 2:
     urRapper['bg'] = 'million'
     urRapper['title'] = 'миллионером из трущоб.'
-    urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
+    urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)])
 elif background == 3:
     urRapper['bg'] = 'minecraft'
     urRapper['title'] = 'любителем игры Minecraft.'
-    urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)]['bars'])
+    urRapper['bars'].append(minecraftTheme[random.randint(0, len(minecraftTheme)-1)])
 elif background == 4:
     urRapper['bg'] = 'elephant'
     urRapper['title'] = 'любителем реального дерьма.'
-    urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)]['bars'])
+    urRapper['bars'].append(elephantTheme[random.randint(0, len(elephantTheme)-1)])
 else:
     print('\n''Что ты делаешь?')
 
@@ -113,7 +132,7 @@ print('Вы', name, 'и являетесь', character_result)
 while True:
     # s = 1
     # for i in urRapper['inv']:
-    #     print('\n'" >[", s, "]: ", i['bars'])
+    #     print(" >[", s, "]: ", i['bars'])
     #     s += 1
 
     print('===========================')
@@ -131,39 +150,24 @@ while True:
             enemy = yungleo
             coin = random.randint(0,1)
             if coin == 0:
+                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
                 print("Жеребъевка проиграна. Вы ходите первым")
                 print("You have: ")
-                matchBars_1 = []
-                matchBars_2 = []
-                iBars = 1
-                for bar in urRapper['bars']:
-                    matchBars_1.append(iBars)
-                    matchBars_2.append(bar)
-                    print(" >[", iBars, "]: ", bar)
-                    iBars += 1
-                matchBars = list(zip(matchBars_1, matchBars_2))
-                ansBars = int(input("Choose a punchline: "))
-                r1Y = []
-                r2Y = []
-                r3Y = []
+                battle_roundY()
+                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
+                break
+
+            elif coin == 1:
                 r1E = []
                 r2E = []
                 r3E = []
-
-                if ansBars == matchBars[ansBars - 1][0]:
-                    r1Y.append(matchBars[1][bar['points']])
-                    print(matchBars[ansBars - 1][1])
-                    print()
-                    break
-                elif ansBars == matchBars[ansBars - 1][0]:
-                    print(matchBars[ansBars - 1][1])
-                    break
-
-            elif coin == 1:
+                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
                 print("Жеребъевка выиграна. Вы ходите вторым")
                 print("Раунд противника: ")
-                r1E = enemy['bars'][random.randint(0, len(enemy['bars'])-1)]
-                print(r1E)
+                eRandom = random.randint(0, len(enemy['bars'])-1)
+                r1E.append(enemy['bars'][eRandom]['points'])
+                print(enemy['bars'][eRandom]['bars'])
+                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
 
         elif enemy_roll == fiftydraem['id']:
             enemy = fiftydraem
@@ -205,6 +209,7 @@ while True:
                 if urRapper['money'] >= shop['slot1']['cost']:
                     urRapper['inv'].append(shop['slot1'])
                     shop['slot1'] = 'none'
+                    urRapper['inv'][0]['name']
                 else:
                     print('пошёл в жопу')
             elif buy == 2:
