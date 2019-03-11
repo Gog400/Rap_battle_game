@@ -71,25 +71,6 @@ urRapper = {
     'money': 3000
 }
 
-def battle_roundY():
-    r1Y = []
-    r2Y = []
-    r3Y = []
-    matchBars_1 = []
-    matchBars_2 = []
-    iBars = 1
-    for bar in urRapper['bars']:
-        matchBars_1.append(iBars)
-        matchBars_2.append(bar['bars'])
-        print(" >[", iBars, "]: ", bar)
-        iBars += 1
-
-    matchBars = list(zip(matchBars_1, matchBars_2))
-    ansBars = int(input("Choose a punchline: "))
-
-    if ansBars == matchBars[ansBars - 1][0]:
-        r1Y.append(matchBars[0][1]['points'])
-
 gangstaTheme = [punchline_1, punchline_4]
 millionTheme = [punchline_2, punchline_3]
 minecraftTheme = [punchline_3, punchline_2]
@@ -145,17 +126,31 @@ while True:
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        enemy_roll = random.randint(50,53)
+        enemy_roll = random.randint(50,50)
         if enemy_roll == yungleo['id']:
             enemy = yungleo
             coin = random.randint(0,1)
             if coin == 0:
                 print('\n''$$$$$$$$$$$$$$$$$$$$$$')
                 print("Жеребъевка проиграна. Вы ходите первым")
+                ansBars = int(input("Choose a punchline: "))
                 print("You have: ")
-                battle_roundY()
+                r1Y = []
+                r2Y = []
+                r3Y = []
+                matchBars_1 = []
+                matchBars_2 = []
+                iBars = 1
+                for bar in urRapper['bars']:
+                    matchBars_1.append(iBars)
+                    matchBars_2.append(bar)
+                    print(" >[", iBars, "]: ", bar['bars'])
+                    iBars += 1
+                matchBars = list(zip(matchBars_1, matchBars_2))
+                if ansBars == matchBars[ansBars - 1][0]:
+                    r1Y.append(matchBars[0][1]['points'])
+                    
                 print('$$$$$$$$$$$$$$$$$$$$$$''\n')
-                break
 
             elif coin == 1:
                 r1E = []
