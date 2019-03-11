@@ -133,7 +133,6 @@ while True:
             if coin == 0:
                 print('\n''$$$$$$$$$$$$$$$$$$$$$$')
                 print("Жеребъевка проиграна. Вы ходите первым")
-                ansBars = int(input("Choose a punchline: "))
                 print("You have: ")
                 r1Y = []
                 r2Y = []
@@ -147,9 +146,10 @@ while True:
                     print(" >[", iBars, "]: ", bar['bars'])
                     iBars += 1
                 matchBars = list(zip(matchBars_1, matchBars_2))
+                ansBars = int(input("Choose a punchline: "))
                 if ansBars == matchBars[ansBars - 1][0]:
                     r1Y.append(matchBars[0][1]['points'])
-                    
+
                 print('$$$$$$$$$$$$$$$$$$$$$$''\n')
 
             elif coin == 1:
