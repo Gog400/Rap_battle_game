@@ -1,6 +1,47 @@
 import random
 while True:
 ##словари
+    punchline_1 = {
+        'id': 1,
+        'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
+        'theme': 'gangsta'
+    }
+    punchline_2 = {
+        'id': 2,
+        'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
+        'theme': 'million'
+    }
+    punchline_3 = {
+        'id': 3,
+        'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+        'theme': 'minecraft'
+    }
+    punchline_4 = {
+        'id': 4,
+        'bars': 'Я биссексуал',
+        'theme': 'elephant'
+    }
+    yungleo = {
+        'id': 50,
+        'name': 'Yung Leo',
+        'bars': [punchline_2]
+    }
+    fiftydraem = {
+        'id': 51,
+        'name': 'Fifty Draem',
+        'bars': [punchline_1]
+    }
+    creeper = {
+        'id': 52,
+        'name': 'Kriper95',
+        'bars': [punchline_3]
+    }
+    Lich = {
+        'id': 53,
+        'name': 'Lichinus',
+        'bars': [punchline_4]
+
+}
     GucciGlock = {
         'id': '100',
         'name': 'GucciGlock',
@@ -34,33 +75,6 @@ while True:
     'slot3': 'none'
     }
 
-    punchline_1 = {
-        'id': 1,
-        'bars': 'У меня есть Гуччи глок, ты - прилизаный пидарок',
-        'theme': 'gangsta'
-    }
-    punchline_2 = {
-        'id': 2,
-        'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
-        'theme': 'million'
-    }
-    punchline_3 = {
-        'id': 3,
-        'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
-        'theme': 'minecraft'
-    }
-    punchline_4 = {
-        'id': 4,
-        'bars': 'Я биссексуал',
-        'theme': 'elephant'
-    }
-    urRapper = {
-        'inv': [],
-        'bars': [],
-        'bg': 'none',
-        'money': 3000
-    }
-
     gangstaTheme = [punchline_1, punchline_4]
     millionTheme = [punchline_2, punchline_3]
     minecraftTheme = [punchline_3, punchline_2]
@@ -81,7 +95,7 @@ while True:
         urRapper['bars'].append(gangstaTheme[random.randint(0, len(gangstaTheme)-1)]['bars'])
     elif background == 2:
         urRapper['bg'] = 'million'
-        urRaper['title'] = 'миллионером из трущоб.'
+        urRapper['title'] = 'миллионером из трущоб.'
         urRapper['bars'].append(millionTheme[random.randint(0, len(millionTheme)-1)]['bars'])
     elif background == 3:
         urRapper['bg'] = 'minecraft'
@@ -122,8 +136,19 @@ while True:
     print('4. Сделать суицид')
     print('5. Арендовать студию звукозаписи')
     daily_action = int(input('Ну что будем делать?: '))
+    if daily_action == 1:
+        enemy_roll = random.randint(50,53)
+        if enemy_roll == yungleo['id']:
+            enemy = yungleo['name']
+        if enemy_roll == fiftydraem['id']:
+            enemy = fiftydraem['name']
+        if enemy_roll == Lich['id']:
+            enemy = Lich['name']
+        if enemy_roll == creeper['id']:
+            enemy = creeper['name']
+        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy)
     if daily_action == 3:
-        while True:
+
             loot = [GucciGlock, GucciBankroll, NewLamborgini]
 
             a = random.randint(0, len(loot)-1)
@@ -157,6 +182,8 @@ while True:
             elif buy == 3:
                 if urRapper['money'] >= shop['slot3']['cost']:
                     urRapper['inv'].append(shop['slot3'])
+            elif buy == 0:
+                continue
             else:
                 print('что ты делаешь?')
             s = 1
