@@ -194,11 +194,11 @@ while True:
                     print(" >[", iBars, "]: ", bar['bars'])
                     iBars += 1
                 matchBars = list(zip(matchBars_1, matchBars_2))
+                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
+
                 ansBars = int(input("Choose a punchline: "))
                 if ansBars == matchBars[ansBars - 1][0]:
                     r1Y.append(matchBars[0][1]['points'])
-
-                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
 
             elif coin == 1:
                 r1E = []
@@ -220,7 +220,7 @@ while True:
             enemy = creeper
         print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
 
-    if daily_action == 3:
+    elif daily_action == 3:
         if len(loot) == 0:
             shop_loop()
 
@@ -241,7 +241,7 @@ while True:
             # print("Магазин пуст, пошел в сраку")
             # print('===========================')
 
-    if daily_action == 4:
+    elif daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
         quit()
     if daily_action == 5:

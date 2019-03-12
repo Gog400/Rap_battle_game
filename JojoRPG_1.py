@@ -15,7 +15,7 @@ frostbolt = {
 repel = {
     'name': 'Repel',
     'damage': 0,
-    'heal': 0,
+    'heal': 3,
     'manacost': 5,
     'statusEffectE': 'none',
     'statusEffectC': 'blessed',
@@ -24,49 +24,79 @@ repel = {
 
 wolf = {
     'id': 1,
+    'lvl': 1,
     'type': 'Beast',
     'name': 'Wild wolf',
-    'hp': 10,
+    'hp': 15,
     'damage': 5,
     'mp': 0,
+    'mpMax': 0,
     'bounty': 5,
-    'statusEffect': []
+    'statusEffect': [],
+    'exp': 5
 }
 sheep = {
     'id': 2,
+    'lvl': 1,
     'type': 'Beast',
     'name': 'Golden sheep',
-    'hp': 1,
+    'hp': 50,
+    'hpMax': 50,
     'damage': 1,
     'mp': 0,
+    'mpMax': 0,
     'bounty': 50,
-    'statusEffect': []
+    'statusEffect': [],
+    'exp': 5
 }
 earthworm = {
     'id': 3,
+    'lvl': 1,
     'type': 'Beast',
     'name': 'Earthworm Jimm',
     'hp': 2,
+    'hpMax': 2,
     'damage': 10,
     'mp': 0,
+    'mpMax': 0,
     'bounty': 10,
-    'statusEffect': []
+    'statusEffect': [],
+    'exp': 5
+}
+pigbenis = {
+    'id': 4,
+    'lvl': 2,
+    'type': 'Beast',
+    'name': 'Pig Benis',
+    'hp': 30,
+    'hpMax': 30,
+    'damage': 10,
+    'mp': 0,
+    'mpMax': 0,
+    'bounty': 70,
+    'statusEffect': [],
+    'exp': 30
 }
 char = {
     'name': 'Jojo',
     'race': 'Kadjit',
     'type': 'Warrior',
     'hp': 20,
+    'hpMax': 20,
     'damage': 5,
     'mp': 20,
+    'mpMax': 20,
     'gold': 0,
     'mstrength': 1,
     'spells': [ frostbolt, repel ],
-    'statusEffect': []
+    'statusEffect': [],
+    'exp': 0,
+    'lvl': 1
 }
 
 def enemy_loot():
     char['gold'] += enemy['bounty']
+    char['exp'] += enemy['exp']
     enemy['hp'] = eshp[0]
     enemy['statusEffect'].clear()
     print("\n- - - - - - - - - - - - - - - - -")
@@ -77,6 +107,7 @@ def enemy_loot():
 def enemy_check():
     print("\n- / - / - / - / - / - / - / - / -")
     print("Your enemy is: ")
+    print('Level: ', enemy['lvl'])
     print('Type: ', enemy['type'])
     print('Name: ', enemy['name'])
     print('Health: ', enemy['hp'])
@@ -87,13 +118,18 @@ def enemy_check():
     print("- / - / - / - / - / - / - / - / -\n")
 
 def char_check():
+    if char['exp'] == char['lvl']*10:
+        char['exp'] -= char['lvl']*10
+        char['lvl'] += 1
     print("\n- / - / - / - / - / - / - / - / -")
     print("Your character: ")
+    print('Level: ', char['lvl'])
+    print('Experience: ', char['exp'])
     print('Name: ', char['name'])
     print('Race: ', char['race'])
-    print('Health: ', char['hp'])
+    print('Health: ', char['hp'], "/", char['hpMax'])
     print('Damage: ', char['damage'])
-    print('Mana: ', char['mp'])
+    print('Mana: ', char['mp'], "/", char['mpMax'])
     print('Magic strength: ', char['mstrength'])
     print('Gold: ', char['gold'])
     ##print('Available spells: ', char['spells'])
@@ -136,8 +172,10 @@ while char['hp'] >= 0:
                 break
 
         elif a == 2:
-            char['hp'] += 4 * char['mstrength']
+            char['hp'] += 10 * char['mstrength']
             char['mp'] -= 6
+            if char['hp'] > char['hpMax']:
+                char['hp'] = char['hpMax']
             char['hp'] -= enemy['damage']
             if char['hp'] <= 0:
                 print()
@@ -146,6 +184,8 @@ while char['hp'] >= 0:
 
         elif a == 3:
             char['mp'] += 5
+            if char['mp'] > char['mpMax']:
+                char['mp'] = char['mpMax']
             char['hp'] -= enemy['damage']
             if char['hp'] <= 0:
                 print()
@@ -167,7 +207,7 @@ while char['hp'] >= 0:
             ansSpell = int(input("Choose a spell for cast: "))
             if ansSpell == cSpell[ansSpell - 1][0]:
                 enemy['hp'] -= cSpell[ansSpell - 1][1]['damage']
-                char['hp'] += cSpell[ansSpell - 1][1]['damage']
+                char['hp'] += cSpell[ansSpell - 1][1]['heal']
                 char['mp'] -= cSpell[ansSpell - 1][1]['manacost']
                 if enemy['hp'] > 0:
                     char['hp'] -= enemy['damage']
