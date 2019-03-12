@@ -4,13 +4,15 @@ punchline_1 = {
     'id': 1,
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'theme': 'gangsta',
-    'points': 5
+    'points': 5,
+    'synnergy': 2
 }
 punchline_2 = {
     'id': 2,
     'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
     'theme': 'million',
-    'points': 5
+    'points': 5,
+    'synnergy': 1
 }
 punchline_3 = {
     'id': 3,
@@ -21,6 +23,30 @@ punchline_3 = {
 punchline_4 = {
     'id': 4,
     'bars': 'Я биссексуал',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_5 = {
+    'id': 5,
+    'bars': 'Потерял все признаки туриста, теперь гуляю по Европе, будто призрак коммунизма',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_6 = {
+    'id': 6,
+    'bars': 'Я тебе кипу тку, на плите кипятку нагреваю, заливаю тебе в рот - Keep it cool!',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_7 = {
+    'id': 7,
+    'bars': 'Твоя жопа прошита, как и мой ИксБокс. У тебя бомбит, ведь я здесь босс',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_8 = {
+    'id': 8,
+    'bars': 'Твоя жопа прошита, как и мой ИксБокс. У тебя бомбит, ведь я здесь босс',
     'theme': 'elephant',
     'points': 5
 }
@@ -76,7 +102,7 @@ shop = {
 }
 urRapper = {
     'inv': [],
-    'bars': [],
+    'bars': [punchline_3, punchline_4, punchline_5, punchline_6, punchline_7, punchline_8],
     'bg': 'none',
     'title': 'none',
     'money': 3000
@@ -162,11 +188,11 @@ while True:
 
     print('\n''===========================')
     print('Настал новый день... Что будем делать сегодня? ;)')
-    print('1. Записаться на Рэп баттл')
-    print('2. Отдыхать')
-    print('3. Пойти в магазин')
-    print('4. Сделать суицид')
-    print('5. Арендовать студию звукозаписи')
+    print(' >1. Записаться на Рэп баттл')
+    print(' >2. Отдыхать')
+    print(' >3. Пойти в магазин')
+    print(' >4. Сделать суицид')
+    print(' >5. Арендовать студию звукозаписи')
     print('Готовых треков:', studio_count)
     print('День', day_count)
     daily_action = int(input('Ну что будем делать?: '))
@@ -181,13 +207,14 @@ while True:
                 print('\n''$$$$$$$$$$$$$$$$$$$$$$')
                 print("Жеребъевка проиграна. Вы ходите первым")
                 print("You have: ")
+                rBars = char['bars'].copy()
                 r1Y = []
                 r2Y = []
                 r3Y = []
                 matchBars_1 = []
                 matchBars_2 = []
                 iBars = 1
-                for bar in urRapper['bars']:
+                for bar in rBars:
                     matchBars_1.append(iBars)
                     matchBars_2.append(bar)
                     print(" >[", iBars, "]: ", bar['bars'])
@@ -198,6 +225,11 @@ while True:
                 ansBars = int(input("Choose a punchline: "))
                 if ansBars == matchBars[ansBars - 1][0]:
                     r1Y.append(matchBars[0][1]['points'])
+                    rBars.pop(matchBars[0][1])
+                ansBars = int(input("Choose a punchline: "))
+                if ansBars == matchBars[ansBars - 1][0]:
+                    r1Y.append(matchBars[0][1]['points'])
+                    rBars.pop(matchBars[0][1])
 
             elif coin == 1:
                 r1E = []
@@ -210,8 +242,7 @@ while True:
                 r1E.append(enemy['bars'][eRandom]['points'])
                 print(enemy['bars'][eRandom]['bars'])
                 print('$$$$$$$$$$$$$$$$$$$$$$''\n')
-                print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
-                print('Поединок словом состоится через 7 дней!')
+
         elif enemy_roll == fiftydraem['id']:
             enemy = fiftydraem
         elif enemy_roll == Lich['id']:
