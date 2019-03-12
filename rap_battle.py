@@ -82,6 +82,35 @@ urRapper = {
     'money': 3000
 }
 
+def shop_loop():
+    while True:
+        print('\n''Выберите вещи для покупки!')
+        print('1.', shop['slot1']['name'])
+        print('2.', shop['slot2']['name'])
+        print('3.', shop['slot3']['name'])
+        print('0. Выход') ##А выхода то нет!
+
+        buy = int(input('Введите число: '))
+        if buy == 1:
+            if urRapper['money'] >= shop['slot1']['cost']:
+                urRapper['inv'].append(shop['slot1'])
+                shop['slot1'] = blank
+            else:
+                print('пошёл в жопу')
+        elif buy == 2:
+            if urRapper['money'] >= shop['slot2']['cost']:
+                urRapper['inv'].append(shop['slot2'])
+                shop['slot2'] = blank
+            else:
+                print('пошёл в жопу')
+        elif buy == 3:
+            if urRapper['money'] >= shop['slot3']['cost']:
+                urRapper['inv'].append(shop['slot3'])
+                shop['slot3'] = blank
+        else:
+            print('что ты делаешь?')
+            break
+
 gangstaTheme = [punchline_1, punchline_4]
 millionTheme = [punchline_2, punchline_3]
 minecraftTheme = [punchline_3, punchline_2]
@@ -186,7 +215,10 @@ while True:
         print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
 
     if daily_action == 3:
-        if len(loot) != 0:
+        if len(loot) == 0:
+            shop_loop()
+
+        else:
             a = random.randint(0, len(loot)-1)
             shop['slot1'] = loot[a]
             loot.pop(a)
@@ -198,38 +230,10 @@ while True:
             c = random.randint(0, len(loot)-1)
             shop['slot3'] = loot[c]
             loot.pop(c)
-
-            while True:
-                print('\n''Выберите вещи для покупки!')
-                print('1.', shop['slot1']['name'])
-                print('2.', shop['slot2']['name'])
-                print('3.', shop['slot3']['name'])
-                print('0. Выход') ##А выхода то нет!
-
-                buy = int(input('Введите число: '))
-                if buy == 1:
-                    if urRapper['money'] >= shop['slot1']['cost']:
-                        urRapper['inv'].append(shop['slot1'])
-                        shop['slot1'] = blank
-                    else:
-                        print('пошёл в жопу')
-                elif buy == 2:
-                    if urRapper['money'] >= shop['slot2']['cost']:
-                        urRapper['inv'].append(shop['slot2'])
-                        shop['slot2'] = blank
-                    else:
-                        print('пошёл в жопу')
-                elif buy == 3:
-                    if urRapper['money'] >= shop['slot3']['cost']:
-                        urRapper['inv'].append(shop['slot3'])
-                        shop['slot3'] = blank
-                else:
-                    print('что ты делаешь?')
-                    break
-        else:
-            print('\n''===========================')
-            print("Магазин пуст, пошел в сраку")
-            print('===========================')
+            shop_loop()
+            # print('\n''===========================')
+            # print("Магазин пуст, пошел в сраку")
+            # print('===========================')
 
     if daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
