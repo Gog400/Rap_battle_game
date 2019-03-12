@@ -117,7 +117,9 @@ minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-
+day_count = 0
+studio_count = 0
+goal = 5
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -161,13 +163,17 @@ while True:
     print('\n''===========================')
     print('Настал новый день... Что будем делать сегодня? ;)')
     print('1. Записаться на Рэп баттл')
-    print('2. Пойти в стриптиз бар') ##https://youtu.be/ielVW4MVOrM
+    print('2. Отдыхать')
     print('3. Пойти в магазин')
     print('4. Сделать суицид')
     print('5. Арендовать студию звукозаписи')
+    print('Готовых треков:', studio_count)
+    print('День', day_count)
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
+        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
+        print('Поединок словом состоится через 7 дней!')
         enemy_roll = random.randint(50,50)
         if enemy_roll == yungleo['id']:
             enemy = yungleo
@@ -238,3 +244,13 @@ while True:
     if daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
         quit()
+    if daily_action == 5:
+        if urRapper['money'] < 300:
+            print('Не хватает у тебя баблишка...')
+        if urRapper['money'] > 300:
+            studio_count += 1
+        print('\n''Вы успешно записали трек! Треков до победы:', goal - studio_count)
+    if studio_count == goal:
+        print('Вы записали свой ПЕРВЫЙ альбом, Красава!!!')
+        print('Игра пройдена, не забудьте оставить фидбек и поделиться с нами вашими деньгами! Удачи!')
+        exit()
