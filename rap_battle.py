@@ -118,7 +118,7 @@ else:
     print('\n''Что ты делаешь?')
 
 character_result = urRapper['title']
-print('Вы', name, 'и являетесь', character_result)
+print('\n''Вы', name, 'и являетесь', character_result)
     # urRapper['inv'].append(GucciGlock)
     # urRapper['inv'].append(GucciBankroll)
     # urRapper['inv'].append(NewLamborgini)
@@ -129,7 +129,7 @@ while True:
     #     print(" >[", s, "]: ", i['bars'])
     #     s += 1
 
-    print('===========================')
+    print('\n''===========================')
     print('Настал новый день... Что будем делать сегодня? ;)')
     print('1. Записаться на Рэп баттл')
     print('2. Пойти в стриптиз бар') ##https://youtu.be/ielVW4MVOrM
@@ -186,45 +186,50 @@ while True:
         print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
 
     if daily_action == 3:
-        a = random.randint(0, len(loot)-1)
-        shop['slot1'] = loot[a]
-        loot.pop(a)
+        if len(loot) != 0:
+            a = random.randint(0, len(loot)-1)
+            shop['slot1'] = loot[a]
+            loot.pop(a)
 
-        b = random.randint(0, len(loot)-1)
-        shop['slot2'] = loot[b]
-        loot.pop(b)
+            b = random.randint(0, len(loot)-1)
+            shop['slot2'] = loot[b]
+            loot.pop(b)
 
-        c = random.randint(0, len(loot)-1)
-        shop['slot3'] = loot[c]
-        loot.pop(c)
+            c = random.randint(0, len(loot)-1)
+            shop['slot3'] = loot[c]
+            loot.pop(c)
 
-        while True:
-            print('\n''Выберите вещи для покупки!')
-            print('1.', shop['slot1']['name'])
-            print('2.', shop['slot2']['name'])
-            print('3.', shop['slot3']['name'])
-            print('0. Выход') ##А выхода то нет!
+            while True:
+                print('\n''Выберите вещи для покупки!')
+                print('1.', shop['slot1']['name'])
+                print('2.', shop['slot2']['name'])
+                print('3.', shop['slot3']['name'])
+                print('0. Выход') ##А выхода то нет!
 
-            buy = int(input('Введите число: '))
-            if buy == 1:
-                if urRapper['money'] >= shop['slot1']['cost']:
-                    urRapper['inv'].append(shop['slot1'])
-                    shop['slot1'] = blank
+                buy = int(input('Введите число: '))
+                if buy == 1:
+                    if urRapper['money'] >= shop['slot1']['cost']:
+                        urRapper['inv'].append(shop['slot1'])
+                        shop['slot1'] = blank
+                    else:
+                        print('пошёл в жопу')
+                elif buy == 2:
+                    if urRapper['money'] >= shop['slot2']['cost']:
+                        urRapper['inv'].append(shop['slot2'])
+                        shop['slot2'] = blank
+                    else:
+                        print('пошёл в жопу')
+                elif buy == 3:
+                    if urRapper['money'] >= shop['slot3']['cost']:
+                        urRapper['inv'].append(shop['slot3'])
+                        shop['slot3'] = blank
                 else:
-                    print('пошёл в жопу')
-            elif buy == 2:
-                if urRapper['money'] >= shop['slot2']['cost']:
-                    urRapper['inv'].append(shop['slot2'])
-                    shop['slot2'] = blank
-                else:
-                    print('пошёл в жопу')
-            elif buy == 3:
-                if urRapper['money'] >= shop['slot3']['cost']:
-                    urRapper['inv'].append(shop['slot3'])
-                    shop['slot3'] = blank
-            else:
-                print('что ты делаешь?')
-                break
+                    print('что ты делаешь?')
+                    break
+        else:
+            print('\n''===========================')
+            print("Магазин пуст, пошел в сраку")
+            print('===========================')
 
     if daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
