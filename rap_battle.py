@@ -172,8 +172,7 @@ while True:
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
-        print('Поединок словом состоится через 7 дней!')
+
         enemy_roll = random.randint(50,50)
         if enemy_roll == yungleo['id']:
             enemy = yungleo
@@ -211,7 +210,8 @@ while True:
                 r1E.append(enemy['bars'][eRandom]['points'])
                 print(enemy['bars'][eRandom]['bars'])
                 print('$$$$$$$$$$$$$$$$$$$$$$''\n')
-
+                print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
+                print('Поединок словом состоится через 7 дней!')
         elif enemy_roll == fiftydraem['id']:
             enemy = fiftydraem
         elif enemy_roll == Lich['id']:
