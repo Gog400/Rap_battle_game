@@ -65,7 +65,7 @@ creeper = {
     'name': 'Kriper95',
     'bars': [punchline_3]
 }
-Lich = {
+lich = {
     'id': 53,
     'name': 'Lichinus',
     'bars': [punchline_4]
@@ -107,6 +107,69 @@ urRapper = {
     'title': 'none',
     'money': 3000
 }
+def battle():
+    global rBars
+    print('\n''$$$$$$$$$$$$$$$$$$$$$$')
+    print("You have: ")
+    rBars = urRapper['bars'].copy()
+    r1Y = []
+    r2Y = []
+    r3Y = []
+    r1E = []
+    r2E = []
+    r3E = []
+    battle_bars()
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r1Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r1E.append(enemy['bars'][eRandom]['points'])
+    print(enemy['bars'][eRandom]['bars'])
+
+    if len(r1Y) and len(r1E) == 1:
+        battle_bars()
+        ansBars = int(input("Choose a punchline: "))
+        if ansBars == matchBars[ansBars - 1][0]:
+            r2Y.append(matchBars[0][1]['points'])
+            rBars.pop(matchBars[ansBars - 1][0] - 1)
+        eRandom = random.randint(0, len(enemy['bars'])-1)
+        r2E.append(enemy['bars'][eRandom]['points'])
+        print(enemy['bars'][eRandom]['bars'])
+
+        if len(r2Y) and len(r2E) == 1:
+            battle_bars()
+            ansBars = int(input("Choose a punchline: "))
+            if ansBars == matchBars[ansBars - 1][0]:
+                r3Y.append(matchBars[0][1]['points'])
+                rBars.pop(matchBars[ansBars - 1][0] - 1)
+            eRandom = random.randint(0, len(enemy['bars'])-1)
+            r3E.append(enemy['bars'][eRandom]['points'])
+            print(enemy['bars'][eRandom]['bars'])
+
+            if len(r3Y) and len(r3E) == 1:
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
+                battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
+                if battleSummY > battleSummE:
+                    print("You win!")
+                elif battleSummY == battleSummE:
+                    print("Sosi jopy")
+                else:
+                    print("You lose")
+
+def battle_bars():
+    global matchBars_1
+    global matchBars_2
+    global matchBars
+    matchBars_1 = []
+    matchBars_2 = []
+    iBars = 1
+    for bar in rBars:
+        matchBars_1.append(iBars)
+        matchBars_2.append(bar)
+        print(" >[", iBars, "]: ", bar['bars'])
+        iBars += 1
+    matchBars = list(zip(matchBars_1, matchBars_2))
 
 def shop_loop():
     while True:
@@ -198,58 +261,22 @@ while True:
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-
-        enemy_roll = random.randint(50,50)
+        enemy_roll = random.randint(50,53)
         if enemy_roll == yungleo['id']:
             enemy = yungleo
-            coin = random.randint(0,1)
-            if coin == 0:
-                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-                print("Жеребъевка проиграна. Вы ходите первым")
-                print("You have: ")
-                rBars = char['bars'].copy()
-                r1Y = []
-                r2Y = []
-                r3Y = []
-                matchBars_1 = []
-                matchBars_2 = []
-                iBars = 1
-                for bar in rBars:
-                    matchBars_1.append(iBars)
-                    matchBars_2.append(bar)
-                    print(" >[", iBars, "]: ", bar['bars'])
-                    iBars += 1
-                matchBars = list(zip(matchBars_1, matchBars_2))
-                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
-
-                ansBars = int(input("Choose a punchline: "))
-                if ansBars == matchBars[ansBars - 1][0]:
-                    r1Y.append(matchBars[0][1]['points'])
-                    rBars.pop(matchBars[0][1])
-                ansBars = int(input("Choose a punchline: "))
-                if ansBars == matchBars[ansBars - 1][0]:
-                    r1Y.append(matchBars[0][1]['points'])
-                    rBars.pop(matchBars[0][1])
-
-            elif coin == 1:
-                r1E = []
-                r2E = []
-                r3E = []
-                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-                print("Жеребъевка выиграна. Вы ходите вторым")
-                print("Раунд противника: ")
-                eRandom = random.randint(0, len(enemy['bars'])-1)
-                r1E.append(enemy['bars'][eRandom]['points'])
-                print(enemy['bars'][eRandom]['bars'])
-                print('$$$$$$$$$$$$$$$$$$$$$$''\n')
-
+            battle()
         elif enemy_roll == fiftydraem['id']:
             enemy = fiftydraem
+            battle()
         elif enemy_roll == Lich['id']:
             enemy = Lich
+            battle()
         elif enemy_roll == creeper['id']:
             enemy = creeper
-        print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
+            battle()
+        elif enemy_roll == lich['id']:
+            enemy = lich
+            battle()
 
     elif daily_action == 3:
         if len(loot) == 0:
