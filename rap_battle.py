@@ -63,6 +63,17 @@ NewLamborgini = {
     'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
     'cost': 320
 }
+blank = {
+    'id': '999',
+    'name': 'none',
+    'bars': 'none',
+    'cost': 0
+}
+shop = {
+    'slot1': blank,
+    'slot2': blank,
+    'slot3': blank
+}
 urRapper = {
     'inv': [],
     'bars': [],
@@ -75,6 +86,8 @@ gangstaTheme = [punchline_1, punchline_4]
 millionTheme = [punchline_2, punchline_3]
 minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
+
+loot = [GucciGlock, GucciBankroll, NewLamborgini]
 
 name = input('Введите своё имя: ')
 
@@ -171,52 +184,44 @@ while True:
         elif enemy_roll == creeper['id']:
             enemy = creeper
         print('Вы решили записаться на Рэп Баттл. Ресторатор, который в кругу друзей имеет прозвище Hitman, говорит вам, что вашим врагом на следующий баттл будет', enemy['name'])
+
     if daily_action == 3:
+        a = random.randint(0, len(loot)-1)
+        shop['slot1'] = loot[a]
+        loot.pop(a)
+
+        b = random.randint(0, len(loot)-1)
+        shop['slot2'] = loot[b]
+        loot.pop(b)
+
+        c = random.randint(0, len(loot)-1)
+        shop['slot3'] = loot[c]
+        loot.pop(c)
+
         while True:
-            shop = {
-            'slot1': 'none',
-            'slot2': 'none',
-            'slot3': 'none'
-            }
-
-            loot = [GucciGlock, GucciBankroll, NewLamborgini]
-
-            a = random.randint(0, len(loot)-1)
-            shop['slot1'] = loot[a]
-            loot.remove(loot[a])
-
-            b = random.randint(0, len(loot)-1)
-            shop['slot2'] = loot[b]
-            loot.remove(loot[b])
-
-            c = random.randint(0, len(loot)-1)
-            shop['slot3'] = loot[c]
-
             print('\n''Выберите вещи для покупки!')
-            print('1.', (shop['slot1']['name']))
-            print('2.', (shop['slot2']['name']))
-            print('3.', (shop['slot3']['name']))
+            print('1.', shop['slot1']['name'])
+            print('2.', shop['slot2']['name'])
+            print('3.', shop['slot3']['name'])
             print('0. Выход') ##А выхода то нет!
 
             buy = int(input('Введите число: '))
-
             if buy == 1:
                 if urRapper['money'] >= shop['slot1']['cost']:
                     urRapper['inv'].append(shop['slot1'])
-                    shop['slot1'] = 'none'
-                    urRapper['inv'][0]['name']
+                    shop['slot1'] = blank
                 else:
                     print('пошёл в жопу')
             elif buy == 2:
                 if urRapper['money'] >= shop['slot2']['cost']:
                     urRapper['inv'].append(shop['slot2'])
-                    shop['slot2'] = 'none'
+                    shop['slot2'] = blank
                 else:
                     print('пошёл в жопу')
             elif buy == 3:
                 if urRapper['money'] >= shop['slot3']['cost']:
                     urRapper['inv'].append(shop['slot3'])
-                    shop['slot3'] = 'none'
+                    shop['slot3'] = blank
             else:
                 print('что ты делаешь?')
                 break
