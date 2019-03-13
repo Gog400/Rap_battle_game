@@ -236,7 +236,7 @@ def battle():
         r1E = []
         r2E = []
         r3E = []
-=======
+
     global r1Y
     global r2Y
     global r3Y
@@ -262,7 +262,7 @@ def battle():
     r1Ebattle()
     print()
     if len(r1Y) and len(r1E) == 2:
->>>>>>> 7b2e739db3a074902674d93117125e8fe3a7f347
+
         battle_bars()
         r2Ybattle()
         battle_bars()
