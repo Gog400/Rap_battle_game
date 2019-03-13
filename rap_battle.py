@@ -175,37 +175,52 @@ shop = {
 }
 rap = {
     'name': 'Рэп',
-
+    'synergy': [2,7],
+    'synY': '1'
 }
 grime = {
-    'name': 'Грайм'
-     #синергия с поджанрами
+    'name': 'Грайм',
+    'synergy': [1],
+    'synY': '2'
 }
 trap = {
-    'name': 'Трэп Музыка'
-
+    'name': 'Трэп Музыка',
+    'synergy': [4],
+    'synY': '3'
 }
 minimalistic = {
-    'name': 'Минималистик'
-
+    'name': 'Минималистик',
+    'synergy': [3],
+    'synY': '4'
 }
 jumpup = {
-    'name': 'Джамп-Ап'
+    'name': 'Джамп-Ап',
+    'synergy': [6],
+    'synY': '5'
 }
 drum = {
-    'name': 'Дрэм'
-
+    'name': 'Дрэм',
+    'synergy': [5],
+    'synY': '6'
 }
 diss = {
-    'name': 'Дисс'
-
+    'name': 'Дисс',
+    'synergy': [1],
+    'synY': '7'
 }
-feat = {
-    'name': 'Фит'
-
+pop = {
+    'name': 'Поп',
+    'synergy': [1],
+    'synY': '9'
 }
+reggie = {
+    'name': 'Рэгги',
+    'synergy': [1,3,4,5,6,7,9],
+    'synY': '10'
+}
+
 music_addons = {
-    'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss, feat]
+    'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss]
 }
 urRapper = {
     'inv': [],
@@ -225,6 +240,12 @@ def battle():
     global r2E
     global r3E
     global rBars
+    global r1YS
+    global r2YS
+    global r3YS
+    global r1ES
+    global r2ES
+    global r3ES
     print()
     print("Выбери одну из твоих строчек: ")
     rBars = urRapper['bars'].copy()
@@ -234,6 +255,12 @@ def battle():
     r1E = []
     r2E = []
     r3E = []
+    r1YS = []
+    r2YS = []
+    r3YS = []
+    r1ES = []
+    r2ES = []
+    r3ES = []
     battle_bars()
     r1Ybattle()
     battle_bars()
@@ -277,28 +304,38 @@ def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r1Y.append(matchBars[0][1]['points'])
+        r1YS.append(matchBars[0][1]['synergy'])
+        if r1YS[0] == r1YS[1]:
+            r1Y *= 1.5
         rBars.pop(matchBars[ansBars - 1][0] - 1)
+
+
 def r1Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r1E.append(enemy['bars'][eRandom]['points'])
+    r1ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
 def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r2Y.append(matchBars[0][1]['points'])
+        r2YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
+    r2ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r3Y.append(matchBars[0][1]['points'])
+        r3YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
+    r3ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
@@ -463,7 +500,7 @@ while True:
         print('\n' 'ну и нахрена ты это сделал?')
         quit()
 
-    if daily_action == 5:
+    elif daily_action == 5:
         day_skip_check()
         while True:
             print('\n''===========================')
@@ -472,7 +509,7 @@ while True:
             print(' >2. Посмотреть статистику')
             print(' >0. Выход')
             studio_action = int(input('Введите число: '))
-            if studio_action == 1:
+        if studio_action == 1:
                 r1Y = []
                 r2Y = []
                 print()
@@ -487,21 +524,23 @@ while True:
                     r2Ybattle()
                     r2Ybattle()
 
-                    studio_summ = sum(r1Y) + sum(r2Y)
+                    if r1Y[0] == r2Y[1]:
+                        studio_summ = sum(r1Y) + sum(r2Y)
+                        print(studio_summ)
                     if studio_summ > 20:
                         print('\n''Нормальный трек получился!!!')
-                    if studio_summ == 20:
+                    elif studio_summ == 20:
                         print('\n''Сойдёт.')
-                    if studio_summ < 20:
+                    elif studio_summ < 20:
                         print('\n''Ну и что за говно ты высрал?')
                     counts['studio'] += 1
                     print('Вы записали свой', counts['studio'], 'песню! Так держать!')
                     print('Песен до записи альбома:', counts['goal'] - counts['studio'])
-            elif studio_action == 2:
-                statCheck()
-            else:
-                break
-    if daily_action == 6:
+        elif studio_action == 2:
+            statCheck()
+        else:
+            break
+    elif daily_action == 6:
         print('Вы вышли на улицу. Тут холодно.')
         print('1. Идти на пары')
         print('2. Идти на завод')
@@ -513,31 +552,41 @@ while True:
             university_roll = random.randint(0,2)
             if university_roll == 0:
                 print('+')
-
-            if university_roll == 1:
+                a = random.randint(0,7)
+                urRapper['genres'].append(music_addons['genres'][a])
+                music_addons['genres'].pop(a)
+                continue
+            elif university_roll == 1:
                 print('-')
-
-            if university_roll == 2:
-                print('=')
-
-            if university_roll == good_university:
-                print('+')
-        if street_action == 2:
+                b = random.randint(0, len(urRapper['genres'])-1)
+                urRapper['genres'].pop(b)
+                print(urRapper['genres'])
+                continue
+            elif university_roll == 2:
+                print('Вы проучились весь день и даже получили 5 по математике.')
+                continue
+        elif street_action == 2:
             counts['day'] += 1
             print('Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
             factory_roll = random.randint(0,2)
             if factory_roll == 0:
-                print('+')
+                print('===========================')
+                print('Прораб, отсутствовавший в течении 6 месяцев, рассказал о каком-то "топ-донатере"')
+                print('который проспонсировал его на первой работе. На радостях, прораб даёт 1% вам.')
                 urRapper['money'] += 1000
                 continue
-            if factory_roll == 1:
-                print('-')
+            elif factory_roll == 1:
+                print('===========================')
+                print('Недавно объявившийся прораб что-то бубнил про некий "бан",')
+                print('из-за которого его основной заработок прекратился.')
+                print('Собственно, поэтому он и задержал вам зарплату до лучших дней.')
                 urRapper['money'] -= 500
                 continue
-            if factory_roll == 3:
-                print('=')
+            elif factory_roll == 3:
+                print('===========================')
+                print('Я пошутил, ничего не произошло. Вы отработали смену и получили деньги.')
                 urRapper['money'] += 500
                 continue
-        if street_action == 3:
+        elif street_action == 3:
             print('Вы решили вернуться домой. На улице слишком холодно')
             continue
