@@ -220,7 +220,6 @@ reggie = {
     'synergy': [1,3,4,5,6,7,9],
     'synY': '10'
 }
-
 music_addons = {
     'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss],
 }
@@ -587,8 +586,11 @@ while True:
                 rBars = urRapper['bars'].copy()
                 battle_bars()
                 r1Ybattle()
+                battle_bars()
                 r1Ybattle()
+                r1SynY()
 
+<<<<<<< HEAD
             if len(r1Y) == 2:
                 battle_bars()
                 r2Ybattle()
@@ -609,24 +611,47 @@ while True:
                 statCheck()
             else:
                 break
+=======
+                if len(r1Y) == 2:
+                    battle_bars()
+                    r2Ybattle()
+                    battle_bars()
+                    r2Ybattle()
+                    r2SynY()
+
+                    studio_summ = total1Y + total2Y
+                    if studio_summ > 20:
+                        print('\n''Нормальный трек получился!!!')
+                    elif studio_summ == 20:
+                        print('\n''Сойдёт.')
+                    elif studio_summ < 20:
+                        print('\n''Ну и что за говно ты высрал?')
+                    print('Вы записали свой', counts['studio'], 'песню! Так держать!')
+                    print('Песен до записи альбома:', counts['goal'] - counts['studio'])
+        elif studio_action == 2:
+            statCheck()
+        else:
+            break
+>>>>>>> e03f59ce55fd3082d7b41dfa2786ad0f99025652
     elif daily_action == 6:
         print('Вы вышли на улицу. Тут холодно.')
-        print('1. Идти на пары')
-        print('2. Идти на завод')
-        print('3. Зайти обратно домой')
+        print(' >1. Идти на пары')
+        print(' >2. Идти на завод')
+        print(' >3. Зайти обратно домой')
         street_action = int(input('Куда направляемся: '))
         if street_action == 1:
-            print('Вы пошли на пары. Там с вами кое-что произошло.')
-            genre = []
-            university_roll = random.randint(0,2)
+            day_skip_check()
+            print('\n''Вы пошли на пары. Там с вами кое-что произошло.')
+            university_var = ['good', 'bad', 'normal']
+            university_roll = random.choices(university_var, weights = [30,20,50])
             if university_roll == 0:
-                print('+')
+                print('Ловя приход от университетских голубцов с яйцом, вы открываете новый жанр')
                 a = random.randint(0,7)
                 urRapper['genres'].append(music_addons['genres'][a])
                 music_addons['genres'].pop(a)
                 continue
             elif university_roll == 1:
-                print('-')
+                print('От голода в университетской столовке у вас происходит инсульт и вы забываете жанр')
                 b = random.randint(0, len(urRapper['genres'])-1)
                 urRapper['genres'].pop(b)
                 print(urRapper['genres'])
@@ -635,7 +660,7 @@ while True:
                 print('Вы проучились весь день и даже получили 5 по математике.')
                 continue
         elif street_action == 2:
-            counts['day'] += 1
+            day_skip_check()
             print('\n''Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
             factory_var = ['good', 'bad', 'normal']
             factory_roll = random.choices(factory_var, weights = [30,20,50])
