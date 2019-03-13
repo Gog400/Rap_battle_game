@@ -218,31 +218,6 @@ urRapper = {
     'lvl': '1'
 }
 def battle():
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    if 7 - counts['battle']:
-        global r1Y
-        global r2Y
-        global r3Y
-        global r1E
-        global r2E
-        global r3E
-        global rBars
-        print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-        print("You have: ")
-        rBars = urRapper['bars'].copy()
-        r1Y = []
-        r2Y = []
-        r3Y = []
-        r1E = []
-        r2E = []
-        r3E = []
-
-=======
->>>>>>> 958663b0028378823098cecc43f633cca054d165
-=======
->>>>>>> 324cc4271bde815f566ced7e9e296952995aea7e
     global r1Y
     global r2Y
     global r3Y
@@ -268,13 +243,6 @@ def battle():
     r1Ebattle()
     print()
     if len(r1Y) and len(r1E) == 2:
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 958663b0028378823098cecc43f633cca054d165
-=======
->>>>>>> 324cc4271bde815f566ced7e9e296952995aea7e
         battle_bars()
         r2Ybattle()
         battle_bars()
