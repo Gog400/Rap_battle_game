@@ -590,49 +590,26 @@ while True:
                 r1Ybattle()
                 r1SynY()
 
-<<<<<<< HEAD
-            if len(r1Y) == 2:
-                battle_bars()
-                r2Ybattle()
-                r2Ybattle()
-                if r1Y[0] == r2Y[1]:
-                    studio_summ = sum(r1Y) + sum(r2Y)
-                    print(studio_summ)
-                if studio_summ > 20:
-                    print('\n''Нормальный трек получился!!!')
-                elif studio_summ == 20:
-                    print('\n''Сойдёт.')
-                elif studio_summ < 20:
-                    print('\n''Ну и что за говно ты высрал?')
-                counts['studio'] += 1
-                print('Вы записали свой', counts['studio'], 'песню! Так держать!')
-                print('Песен до записи альбома:', counts['goal'] - counts['studio'])
-            elif studio_action == 2:
-                statCheck()
-            else:
-                break
-=======
                 if len(r1Y) == 2:
                     battle_bars()
                     r2Ybattle()
-                    battle_bars()
                     r2Ybattle()
-                    r2SynY()
-
-                    studio_summ = total1Y + total2Y
+                    if r1Y[0] == r2Y[1]:
+                        studio_summ = sum(r1Y) + sum(r2Y)
+                        print(studio_summ)
                     if studio_summ > 20:
                         print('\n''Нормальный трек получился!!!')
                     elif studio_summ == 20:
                         print('\n''Сойдёт.')
                     elif studio_summ < 20:
                         print('\n''Ну и что за говно ты высрал?')
+                    counts['studio'] += 1
                     print('Вы записали свой', counts['studio'], 'песню! Так держать!')
                     print('Песен до записи альбома:', counts['goal'] - counts['studio'])
-        elif studio_action == 2:
-            statCheck()
-        else:
-            break
->>>>>>> e03f59ce55fd3082d7b41dfa2786ad0f99025652
+            elif studio_action == 2:
+                statCheck()
+            else:
+                break
     elif daily_action == 6:
         print('Вы вышли на улицу. Тут холодно.')
         print(' >1. Идти на пары')
