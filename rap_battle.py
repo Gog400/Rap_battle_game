@@ -1,32 +1,22 @@
 import random
 ##словари
-battle_count = {
-'count': 0
+battle_stats = {
+    'win': 0,
+    'lose': 0,
+    'draw': 0,
 }
-battle_beggining = {
-'count': 7
-}
-won_battles = {
-'win': 0
-}
-lost_battles = {
-'lost': 0
-}
-studio_count = {
-'count': 0
-}
-goal = {
-'goal': 5
-}
-day_count = {
-'day': 0
+counts = {
+    'studio': 0,
+    'day': 0,
+    'battle': 0,
+    'goal': 5
 }
 punchline_1 = {
     'id': 1,
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'theme': 'gangsta',
     'points': 5,
-    'synergy': 2
+    'synergy': 1
 }
 punchline_2 = {
     'id': 2,
@@ -185,55 +175,56 @@ urRapper = {
     'fame': 0
 }
 def battle():
-    global r1Y
-    global r2Y
-    global r3Y
-    global r1E
-    global r2E
-    global r3E
-    global rBars
-    print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-    print("You have: ")
-    rBars = urRapper['bars'].copy()
-    r1Y = []
-    r2Y = []
-    r3Y = []
-    r1E = []
-    r2E = []
-    r3E = []
-    battle_bars()
-    r1Ybattle()
-    battle_bars()
-    r1Ybattle()
-    r1Ebattle()
-    r1Ebattle()
-    if len(r1Y) and len(r1E) == 2:
+    if 7 - counts['battle']
+        global r1Y
+        global r2Y
+        global r3Y
+        global r1E
+        global r2E
+        global r3E
+        global rBars
+        print('\n''$$$$$$$$$$$$$$$$$$$$$$')
+        print("You have: ")
+        rBars = urRapper['bars'].copy()
+        r1Y = []
+        r2Y = []
+        r3Y = []
+        r1E = []
+        r2E = []
+        r3E = []
         battle_bars()
-        r2Ybattle()
+        r1Ybattle()
         battle_bars()
-        r2Ybattle()
-        r2Ebattle()
-        r2Ebattle()
-        if len(r2Y) and len(r2E) == 2:
+        r1Ybattle()
+        r1Ebattle()
+        r1Ebattle()
+        if len(r1Y) and len(r1E) == 2:
             battle_bars()
-            r3Ybattle()
+            r2Ybattle()
             battle_bars()
-            r3Ybattle()
-            r3Ebattle()
-            r3Ebattle()
+            r2Ybattle()
+            r2Ebattle()
+            r2Ebattle()
+            if len(r2Y) and len(r2E) == 2:
+                battle_bars()
+                r3Ybattle()
+                battle_bars()
+                r3Ybattle()
+                r3Ebattle()
+                r3Ebattle()
 
-            if len(r3Y) and len(r3E) == 2:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
-                battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
-                if battleSummY > battleSummE:
-                    print("You win!")
-                    urRapper['fame'] += enemy['lvl'] * 15
-                    urRapper['money'] += enemy['lvl'] * 100
-                elif battleSummY == battleSummE:
-                    print("Sosi jopy")
-                else:
-                    print("You lose")
-                    urRapper['fame'] -= enemy['lvl'] * 15
+                if len(r3Y) and len(r3E) == 2:
+                    battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
+                    battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
+                    if battleSummY > battleSummE:
+                        print("You win!")
+                        urRapper['fame'] += enemy['lvl'] * 15
+                        urRapper['money'] += enemy['lvl'] * 100
+                    elif battleSummY == battleSummE:
+                        print("Sosi jopy")
+                    else:
+                        print("You lose")
+                        urRapper['fame'] -= enemy['lvl'] * 15
 
 def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
@@ -443,9 +434,9 @@ while True:
                         print('\n''Сойдёт.')
                     if studio_summ < 20:
                         print('\n''Ну и что за говно ты высрал?')
-                    studio_count += 1
-                    print('Вы записали свой', studio_count, 'песню! Так держать!')
-                    print('Песен до записи альбома:', goal - studio_count)
+                    counts['studio'] += 1
+                    print('Вы записали свой', counts['studio'], 'песню! Так держать!')
+                    print('Песен до записи альбома:', counts['goal'] - counts['studio'])
             elif studio_action == 2:
                 statCheck()
             else:
