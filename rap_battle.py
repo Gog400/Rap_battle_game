@@ -220,6 +220,7 @@ urRapper = {
 def battle():
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     if 7 - counts['battle']:
         global r1Y
         global r2Y
@@ -240,6 +241,8 @@ def battle():
 
 =======
 >>>>>>> 958663b0028378823098cecc43f633cca054d165
+=======
+>>>>>>> 324cc4271bde815f566ced7e9e296952995aea7e
     global r1Y
     global r2Y
     global r3Y
@@ -266,9 +269,12 @@ def battle():
     print()
     if len(r1Y) and len(r1E) == 2:
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 958663b0028378823098cecc43f633cca054d165
+=======
+>>>>>>> 324cc4271bde815f566ced7e9e296952995aea7e
         battle_bars()
         r2Ybattle()
         battle_bars()
