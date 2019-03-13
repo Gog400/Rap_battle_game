@@ -219,6 +219,7 @@ urRapper = {
 }
 def battle():
 <<<<<<< HEAD
+<<<<<<< HEAD
     if 7 - counts['battle']:
         global r1Y
         global r2Y
@@ -237,6 +238,8 @@ def battle():
         r2E = []
         r3E = []
 
+=======
+>>>>>>> 958663b0028378823098cecc43f633cca054d165
     global r1Y
     global r2Y
     global r3Y
@@ -262,7 +265,10 @@ def battle():
     r1Ebattle()
     print()
     if len(r1Y) and len(r1E) == 2:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 958663b0028378823098cecc43f633cca054d165
         battle_bars()
         r2Ybattle()
         battle_bars()
@@ -280,20 +286,6 @@ def battle():
             r3Ebattle()
             r3Ebattle()
             print()
-
-                if len(r3Y) and len(r3E) == 2:
-                    battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
-                    battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
-                    if battleSummY > battleSummE:
-                        print("You win!")
-                        urRapper['fame'] += enemy['lvl'] * 15
-                        urRapper['money'] += enemy['lvl'] * 100
-                    elif battleSummY == battleSummE:
-                        print("Sosi jopy")
-                    else:
-                        print("You lose")
-                        urRapper['fame'] -= enemy['lvl'] * 15
-
             if len(r3Y) and len(r3E) == 2:
                 battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
@@ -301,8 +293,6 @@ def battle():
                     print("You win!")
                     urRapper['fame'] += enemy['lvl'] * 15
                     urRapper['money'] += enemy['lvl'] * 100
-                    enemies[urRapper['lvl']].pop(enemy_roll)
-
                 elif battleSummY == battleSummE:
                     print("Sosi jopy")
                 else:
