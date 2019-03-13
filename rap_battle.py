@@ -228,7 +228,7 @@ knowledge_shop = {
 }
 urRapper = {
     'inv': [],
-    'bars': [],
+    'bars': [punchline_9, punchline_8, punchline_7, punchline_6, punchline_5],
     'bg': 'none',
     'title': 'none',
     'money': 3000,
@@ -344,7 +344,7 @@ def r1SynE():
 
 def r2SynE():
     global total2E
-    if r2ES[0] == r2ES[1]:
+    if r1ES[0]['synY'] in r1ES[1]['synergy']:
         print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
         total2E = sum(r2E)
         total2E *= 1.5
@@ -353,7 +353,7 @@ def r2SynE():
 
 def r3SynE():
     global total3E
-    if r3ES[0] == r3ES[1]:
+    if r1ES[0]['synY'] in r1ES[1]['synergy']:
         print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
         total3E = sum(r3E)
         total3E *= 1.5
@@ -377,26 +377,26 @@ def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r2Y.append(matchBars[0][1]['points'])
-        r2YS.append(matchBars[0][1]['synergy'])
+        r2YS.append(matchBars[0][1])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
-    r2ES.append(enemy['bars'][eRandom]['synergy'])
+    r2ES.append(enemy['bars'][eRandom])
     print(enemy['bars'][eRandom]['bars'])
 
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r3Y.append(matchBars[0][1]['points'])
-        r3YS.append(matchBars[0][1]['synergy'])
+        r3YS.append(matchBars[0][1])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
-    r3ES.append(enemy['bars'][eRandom]['synergy'])
+    r3ES.append(enemy['bars'][eRandom])
     print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
@@ -663,6 +663,7 @@ while True:
             print('Вы решили вернуться домой. На улице слишком холодно')
             continue
     elif daily_action == 7:
+        day_skip_check()
         while True:
             a1 = random.randint(0, len(knowledge_loot)-1)
             knowledge_shop['slot1'] = knowledge_loot[a1]
@@ -673,7 +674,7 @@ while True:
             knowledge_action = int(input('Выберите уже знание: '))
             if knowledge_action == 1:
                 urRapper['bars'].append(knowledge_shop['slot1'])
-                day_skip_check()
+                knowledge_loot.pop(a1)
                 break
             if knowledge_action == 2:
                 break
