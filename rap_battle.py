@@ -221,11 +221,14 @@ reggie = {
     'synY': '10'
 }
 music_addons = {
-    'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss]
+    'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss],
+}
+knowledge_shop = {
+    'slot1': 'blank'
 }
 urRapper = {
     'inv': [],
-    'bars': [punchline_1, punchline_2, punchline_3, punchline_4, punchline_9],
+    'bars': [],
     'bg': 'none',
     'title': 'none',
     'money': 3000,
@@ -374,26 +377,26 @@ def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r2Y.append(matchBars[0][1]['points'])
-        r2YS.append(matchBars[0][1])
+        r2YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
-    r2ES.append(enemy['bars'][eRandom])
+    r2ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
 
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r3Y.append(matchBars[0][1]['points'])
-        r3YS.append(matchBars[0][1])
+        r3YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
-    r3ES.append(enemy['bars'][eRandom])
+    r3ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
@@ -467,7 +470,7 @@ elephantTheme = [punchline_4, punchline_1]
 
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-knowledge_bars = [punchline_1, punchline_2,punchline_3,punchline_4,punchline_9]
+knowledge_loot = [punchline_1, punchline_2,punchline_3,punchline_4,punchline_9]
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -660,5 +663,11 @@ while True:
             print('Вы решили вернуться домой. На улице слишком холодно')
             continue
     elif daily_action == 7:
-        a1 = random.randint(0, len(loot)-1)
-        john
+        while True:
+            a1 = random.randint(0, len(knowledge_loot)-1)
+            knowledge_shop['slot1'] = knowledge_loot[a1]
+            statCheck()
+            print('\n''Выберите вещи для покупки!')
+            print('1.', shop['slot1']['name'])
+            knowledge_action = int(input('Выберите уже знание: '))
+            urRapper['bars'].append(knowledge_shop['slot1'])
