@@ -123,22 +123,26 @@ punchline_16 = {
 yungleo = {
     'id': 50,
     'name': 'Yung Leo',
-    'bars': [punchline_5, punchline_6, punchline_7]
+    'bars': [punchline_5, punchline_6, punchline_7],
+    'lvl': 1
 }
 fiftydraem = {
     'id': 51,
     'name': 'Fifty Draem',
-    'bars': [punchline_8, punchline_9, punchline_10]
+    'bars': [punchline_8, punchline_9, punchline_10],
+    'lvl': 1
 }
 creeper = {
     'id': 52,
     'name': 'Kriper95',
-    'bars': [punchline_11, punchline_12, punchline_13]
+    'bars': [punchline_11, punchline_12, punchline_13],
+    'lvl': 1
 }
 lich = {
     'id': 53,
     'name': 'Lichinus',
-    'bars': [punchline_14, punchline_15, punchline_16]
+    'bars': [punchline_14, punchline_15, punchline_16],
+    'lvl': 1
 }
 GucciGlock = {
     'id': '100',
@@ -177,10 +181,43 @@ urRapper = {
     'bars': [punchline_1, punchline_2, punchline_3, punchline_4],
     'bg': 'none',
     'title': 'none',
-    'money': 3000
+    'money': 3000,
+    'fame': 0
 }
+def r1Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r1Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r1Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r1E.append(enemy['bars'][eRandom]['points'])
+    print("Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
+def r2Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r2Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r2Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r2E.append(enemy['bars'][eRandom]['points'])
+    print("Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
+def r3Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r3Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r3Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r3E.append(enemy['bars'][eRandom]['points'])
+    print("Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
+
+
 def battle():
-    global rBars, won_battles, lost_battles
+    global rBars
     print('\n''$$$$$$$$$$$$$$$$$$$$$$')
     print("You have: ")
     rBars = urRapper['bars'].copy()
@@ -191,46 +228,29 @@ def battle():
     r2E = []
     r3E = []
     battle_bars()
-    ansBars = int(input("Choose a punchline: "))
-    if ansBars == matchBars[ansBars - 1][0]:
-        r1Y.append(matchBars[0][1]['points'])
-        rBars.pop(matchBars[ansBars - 1][0] - 1)
-    eRandom = random.randint(0, len(enemy['bars'])-1)
-    r1E.append(enemy['bars'][eRandom]['points'])
-    print(enemy['bars'][eRandom]['bars'])
-
-    if len(r1Y) and len(r1E) == 1:
+    r1Ybattle()
+    r1Ebattle()
+    if len(r1Y) and len(r1E) == 2:
         battle_bars()
-        ansBars = int(input("Choose a punchline: "))
-        if ansBars == matchBars[ansBars - 1][0]:
-            r2Y.append(matchBars[0][1]['points'])
-            rBars.pop(matchBars[ansBars - 1][0] - 1)
-        eRandom = random.randint(0, len(enemy['bars'])-1)
-        r2E.append(enemy['bars'][eRandom]['points'])
-        print(enemy['bars'][eRandom]['bars'])
-
-        if len(r2Y) and len(r2E) == 1:
+        r2Ybattle()
+        r2Ebattle()
+        if len(r2Y) and len(r2E) == 2:
             battle_bars()
-            ansBars = int(input("Choose a punchline: "))
-            if ansBars == matchBars[ansBars - 1][0]:
-                r3Y.append(matchBars[0][1]['points'])
-                rBars.pop(matchBars[ansBars - 1][0] - 1)
-            eRandom = random.randint(0, len(enemy['bars'])-1)
-            r3E.append(enemy['bars'][eRandom]['points'])
-            print(enemy['bars'][eRandom]['bars'])
+            r3Ybattle()
+            r3Ebattle()
 
-            if len(r3Y) and len(r3E) == 1:
+            if len(r3Y) and len(r3E) == 2:
                 battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
                     print("You win!")
-                    won_battles += 1
-                    urRapper['money'] += 1000
+                    urRapper['fame'] += enemy['lvl'] * 15
+                    urRapper['money'] += enemy['lvl'] * 100
                 elif battleSummY == battleSummE:
                     print("Sosi jopy")
                 else:
                     print("You lose")
-                    lost_battles += 1
+                    urRapper['fame'] -= enemy['lvl'] * 15
 
 def battle_bars():
     global matchBars_1
@@ -246,30 +266,41 @@ def battle_bars():
         iBars += 1
     matchBars = list(zip(matchBars_1, matchBars_2))
 
+def statCheck():
+    print('===========================')
+    print('Готовых треков:', studio_count)
+    print('Ваше баблишко: ', urRapper['money'], '$')
+    print('Известность: ', urRapper['fame'])
+    print('===========================''\n')
+
 def shop_loop():
     while True:
+        statCheck()
         print('\n''Выберите вещи для покупки!')
         print('1.', shop['slot1']['name'])
         print('2.', shop['slot2']['name'])
         print('3.', shop['slot3']['name'])
-        print('0. Выход') ##А выхода то нет!
+        print('0. Выход')
 
         buy = int(input('Введите число: '))
         if buy == 1:
             if urRapper['money'] >= shop['slot1']['cost']:
                 urRapper['inv'].append(shop['slot1'])
+                urRapper['money'] -= shop['slot1']['cost']
                 shop['slot1'] = blank
             else:
                 print('пошёл в жопу')
         elif buy == 2:
             if urRapper['money'] >= shop['slot2']['cost']:
                 urRapper['inv'].append(shop['slot2'])
+                urRapper['money'] -= shop['slot2']['cost']
                 shop['slot2'] = blank
             else:
                 print('пошёл в жопу')
         elif buy == 3:
             if urRapper['money'] >= shop['slot3']['cost']:
                 urRapper['inv'].append(shop['slot3'])
+                urRapper['money'] -= shop['slot3']['cost']
                 shop['slot3'] = blank
         else:
             print('что ты делаешь?')
@@ -281,7 +312,9 @@ minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-
+day_count = 0
+studio_count = 0
+goal = 5
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -317,54 +350,34 @@ print('\n''Вы', name, 'и являетесь', character_result)
     # urRapper['inv'].append(NewLamborgini)
 
 while True:
-    # s = 1
-    # for i in urRapper['inv']:
-    #     print(" >[", s, "]: ", i['bars'])
-    #     s += 1
-
     print('\n''===========================')
-    print('Настал новый день... Что будем делать сегодня? ;)')
+    print('Настал', day_count, 'день... Что будем делать сегодня? ;)')
+    print('===========================''\n')
+    statCheck()
+
     print(' >1. Записаться на Рэп баттл')
     print(' >2. Отдыхать')
     print(' >3. Пойти в магазин')
     print(' >4. Сделать суицид')
-    print(' >5. Арендовать студию звукозаписи')
-    print('Выигранных рэп баталий:', won_battles)
-    print('Проигранных рэп баталий:', lost_battles)
-    print('Готовых треков:', studio_count)
-    print('Долларов:', urRapper['money'])
-    print('День', day_count)
+    print(' >5. Арендовать студию звукозаписи''\n')
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        day_count += 1
-        print('Вы подошли к ресторатору, которого в кругу друзей зовут Hitman. Он записал вас на рэп битву, которая начнётся через 7 дней.')
+        enemy_roll = random.randint(50,53)
+        if enemy_roll == yungleo['id']:
+            enemy = yungleo
+            battle()
+        elif enemy_roll == fiftydraem['id']:
+            enemy = fiftydraem
+            battle()
+        elif enemy_roll == lich['id']:
+            enemy = lich
+            battle()
+        elif enemy_roll == creeper['id']:
+            enemy = creeper
+            battle()
 
-        battle_count = 1
-        battle_beggining = 7 - battle_count
-        battle_count += 1 #это финальный вариант, который не получился. Я раз 50 переписывал тут всё, но он не хочет реагировать на счетчик. пиздец кароче
-        if battle_beggining == 0:
-            enemy_roll = random.randint(50,53)
-            if enemy_roll == yungleo['id']:
-                enemy = yungleo
-
-            elif enemy_roll == fiftydraem['id']:
-                enemy = fiftydraem
-
-            elif enemy_roll == lich['id']:
-                enemy = lich
-
-            elif enemy_roll == creeper['id']:
-                enemy = creeper
-                battle()
-    elif daily_action == 2:
-        day_count += 1
-        battle_count += 1
-        print('Вы отдохнули')
-        continue
     elif daily_action == 3:
-        day_count += 1
-        battle_count += 1
         if len(loot) == 0:
             shop_loop()
 
@@ -381,19 +394,18 @@ while True:
             shop['slot3'] = loot[c]
             loot.pop(c)
             shop_loop()
-            # print('\n''===========================')
-            # print("Магазин пуст, пошел в сраку")
-            # print('===========================')
 
     elif daily_action == 4:
         print('\n' 'ну и нахрена ты это сделал?')
         quit()
+
     if daily_action == 5:
-        day_count += 1
         while True:
-            print('Добро пожаловать в студию звукозаписи!')
-            print('1. Записать песню')
-            print('2. Посмотреть статистику')
+            print('\n''===========================')
+            print('Добро пожаловать в студию звукозаписи!''\n')
+            print(' >1. Записать песню')
+            print(' >2. Посмотреть статистику')
+            print(' >0. Выход')
             studio_action = int(input('Введите число: '))
             if studio_action == 1:
                 r1Y = []
@@ -402,24 +414,25 @@ while True:
                 print("You have: ")
                 rBars = urRapper['bars'].copy()
                 battle_bars()
-                ansBars = int(input("Choose a punchline: "))
-                if ansBars == matchBars[ansBars - 1][0]:
-                    r1Y.append(matchBars[0][1]['points'])
-                    rBars.pop(matchBars[ansBars - 1][0] - 1)
-                if len(r1Y) == 1:
+                r1Ybattle()
+                r1Ybattle()
+
+                if len(r1Y) == 2:
                     battle_bars()
-                    ansBars = int(input('Choose a punchline2: '))
-                    if ansBars == matchBars[ansBars - 1][0]:
-                        r2Y.append(matchBars[0][1]['points'])
-                        rBars.pop(matchBars[ansBars - 1][0] - 1)
+                    r2Ybattle()
+                    r2Ybattle()
+
                     studio_summ = sum(r1Y) + sum(r2Y)
-                    if studio_summ > 4:
-                        print('Нормальный трек получился!!!')
-                    if studio_summ == 4:
-                        print('Сойдёт.')
-                    if studio_summ < 4:
-                        print('Ну и что за говно ты высрал?')
+                    if studio_summ > 20:
+                        print('\n''Нормальный трек получился!!!')
+                    if studio_summ == 20:
+                        print('\n''Сойдёт.')
+                    if studio_summ < 20:
+                        print('\n''Ну и что за говно ты высрал?')
                     studio_count += 1
                     print('Вы записали свой', studio_count, 'песню! Так держать!')
                     print('Песен до записи альбома:', goal - studio_count)
-                    break
+            elif studio_action == 2:
+                statCheck()
+            else:
+                break
