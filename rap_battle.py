@@ -1,5 +1,6 @@
 import random
 ##словари
+
 battle_stats = {
     'win': 0,
     'lose': 0,
@@ -169,17 +170,52 @@ shop = {
     'slot2': blank,
     'slot3': blank
 }
+rap = {
+    'name': 'Рэп',
+
+}
+grime = {
+    'name': 'Грайм'
+     #синергия с поджанрами
+}
+trap = {
+    'name': 'Трэп Музыка'
+
+}
+minimalistic = {
+    'name': 'Минималистик'
+
+}
+jumpup = {
+    'name': 'Джамп-Ап'
+}
+drum = {
+    'name': 'Дрэм'
+
+}
+diss = {
+    'name': 'Дисс'
+
+}
+feat = {
+    'name': 'Фит'
+
+}
+music_addons = {
+    'genres': [rap, grime, trap, minimalistic, jumpup, drum, diss, feat]
+}
 urRapper = {
     'inv': [],
     'bars': [punchline_1, punchline_2, punchline_3, punchline_4, punchline_9],
     'bg': 'none',
     'title': 'none',
     'money': 3000,
+    'genres': [],
     'fame': 0,
     'lvl': 1
 }
 def battle():
-    if 7 - counts['battle']
+    if 7 - counts['battle']:
         global r1Y
         global r2Y
         global r3Y
@@ -217,7 +253,6 @@ def battle():
                 r3Ebattle()
                 r3Ebattle()
 
-<<<<<<< HEAD
                 if len(r3Y) and len(r3E) == 2:
                     battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                     battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
@@ -230,7 +265,7 @@ def battle():
                     else:
                         print("You lose")
                         urRapper['fame'] -= enemy['lvl'] * 15
-=======
+
             if len(r3Y) and len(r3E) == 2:
                 battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
@@ -245,7 +280,6 @@ def battle():
                 else:
                     print("You lose")
                     urRapper['fame'] -= enemy['lvl'] * 15
->>>>>>> 2ae281c26658463ddf271865e5b65fceab327218
 
 def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
@@ -471,8 +505,21 @@ while True:
         street_action = int(input('Куда направляемся?'))
         if street_action == 1:
             print('Вы пошли на пары. Там с вами кое-что произошло.')
+            genre = []
+            university_roll = random.randint(0,2)
+            if university_roll == 0:
+                print('+')
+
+            if university_roll == 1:
+                print('-')
+
+            if university_roll == 2:
+                print('=')
+
+            if university_roll == good_university:
+                print('+')
         if street_action == 2:
-            day_count
+            counts['day'] += 1
             print('Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
             factory_roll = random.randint(0,2)
             if factory_roll == 0:
