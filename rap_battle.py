@@ -24,6 +24,7 @@ day_count = {
 punchline_1 = {
     'id': 1,
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
+    'mind_bars': 'У меня есть ~$%@&*! глок, ты - прилизаный $%@#&!~ок',
     'theme': 'gangsta',
     'points': 5,
     'synergy': 1
@@ -31,6 +32,7 @@ punchline_1 = {
 punchline_2 = {
     'id': 2,
     'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
+    'mind_bars': '?%№@#& @$№?*! - это смысл жизни. Я не ЧСВ, просто нет %№?@',
     'theme': 'million',
     'points': 5,
     'synergy': 1
@@ -38,6 +40,7 @@ punchline_2 = {
 punchline_3 = {
     'id': 3,
     'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'mind_bars': 'Новый %@#$%?, новые цацки. Моя жизнь - это Каноха, ты в ней %$#@&№!',
     'theme': 'minecraft',
     'points': 5
 }
@@ -224,7 +227,7 @@ def battle():
             r3Ebattle()
 
             if len(r3Y) and len(r3E) == 2:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + 1
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
                     print('===========================')
@@ -376,7 +379,8 @@ while True:
     print(' >2. Отдыхать')
     print(' >3. Пойти в магазин')
     print(' >4. Сделать суицид')
-    print(' >5. Арендовать студию звукозаписи''\n')
+    print(' >5. Арендовать студию звукозаписи')
+    print(' >6. Выйти на улицу''\n')
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
@@ -453,3 +457,30 @@ while True:
                 statCheck()
             else:
                 break
+    if daily_action == 6:
+        print('Вы вышли на улицу. Тут холодно.')
+        print('1. Идти на пары')
+        print('2. Идти на завод')
+        print('3. Зайти обратно домой')
+        street_action = int(input('Куда направляемся?'))
+        if street_action == 1:
+            print('Вы пошли на пары. Там с вами кое-что произошло.')
+        if street_action == 2:
+            day_count
+            print('Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
+            factory_roll = random.randint(0,2)
+            if factory_roll == 0:
+                print('+')
+                urRapper['money'] += 1000
+                continue
+            if factory_roll == 1:
+                print('-')
+                urRapper['money'] -= 500
+                continue
+            if factory_roll == 3:
+                print('=')
+                urRapper['money'] += 500
+                continue
+        if street_action == 3:
+            print('Вы решили вернуться домой. На улице слишком холодно')
+            continue
