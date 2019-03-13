@@ -1,5 +1,26 @@
 import random
 ##словари
+battle_count = {
+'count': 0
+}
+battle_beggining = {
+'count': 7
+}
+won_battles = {
+'win': 0
+}
+lost_battles = {
+'lost': 0
+}
+studio_count = {
+'count': 0
+}
+goal = {
+'goal': 5
+}
+day_count = {
+'day': 0
+}
 punchline_1 = {
     'id': 1,
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
@@ -260,13 +281,7 @@ minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-battle_count = 0
-battle_beginning = 7
-day_count = 0
-studio_count = 0
-goal = 5
-won_battles = 0
-lost_battles = 0
+
 name = input('Введите своё имя: ')
 
 print('====================')
