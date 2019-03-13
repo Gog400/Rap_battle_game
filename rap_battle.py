@@ -8,8 +8,8 @@ battle_stats = {
 counts = {
     'studio': 0,
     'day': 0,
-    'battle': 0,
-    'goal': 5
+    'goal': 5,
+    'battle': ''
 }
 punchline_1 = {
     'id': 1,
@@ -27,7 +27,7 @@ punchline_2 = {
 }
 punchline_3 = {
     'id': 3,
-    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - Каноха, а ты в ней Акацке',
     'theme': 'minecraft',
     'points': 5
 }
@@ -151,9 +151,12 @@ GucciBankroll = {
 NewLamborgini = {
     'id': '102',
     'name': 'NewLamborgini',
-    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'bars': 'Новый ламборгини, новые цацки. Моя жизнь - Каноха, а ты в ней Акацке',
     'points': 5,
     'cost': 320
+}
+enemies = {
+    '1': [yungleo, fiftydraem, creeper, lich]
 }
 blank = {
     'id': '999',
@@ -173,76 +176,66 @@ urRapper = {
     'title': 'none',
     'money': 3000,
     'fame': 0,
-    'lvl': 1
+    'lvl': '1'
 }
 def battle():
-    if 7 - counts['battle']
-        global r1Y
-        global r2Y
-        global r3Y
-        global r1E
-        global r2E
-        global r3E
-        global rBars
-        print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-        print("You have: ")
-        rBars = urRapper['bars'].copy()
-        r1Y = []
-        r2Y = []
-        r3Y = []
-        r1E = []
-        r2E = []
-        r3E = []
+    global r1Y
+    global r2Y
+    global r3Y
+    global r1E
+    global r2E
+    global r3E
+    global rBars
+    print()
+    print("Выбери одну из твоих строчек: ")
+    rBars = urRapper['bars'].copy()
+    r1Y = []
+    r2Y = []
+    r3Y = []
+    r1E = []
+    r2E = []
+    r3E = []
+    battle_bars()
+    r1Ybattle()
+    battle_bars()
+    r1Ybattle()
+    print('\n'"Раунд противника: ")
+    r1Ebattle()
+    r1Ebattle()
+    print()
+    if len(r1Y) and len(r1E) == 2:
         battle_bars()
-        r1Ybattle()
+        r2Ybattle()
         battle_bars()
-        r1Ybattle()
-        r1Ebattle()
-        r1Ebattle()
-        if len(r1Y) and len(r1E) == 2:
+        r2Ybattle()
+        print('\n'"Раунд противника: ")
+        r2Ebattle()
+        r2Ebattle()
+        print()
+        if len(r2Y) and len(r2E) == 2:
             battle_bars()
-            r2Ybattle()
+            r3Ybattle()
             battle_bars()
-            r2Ybattle()
-            r2Ebattle()
-            r2Ebattle()
-            if len(r2Y) and len(r2E) == 2:
-                battle_bars()
-                r3Ybattle()
-                battle_bars()
-                r3Ybattle()
-                r3Ebattle()
-                r3Ebattle()
+            r3Ybattle()
+            print('\n'"Раунд противника: ")
+            r3Ebattle()
+            r3Ebattle()
+            print()
 
-<<<<<<< HEAD
-                if len(r3Y) and len(r3E) == 2:
-                    battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
-                    battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
-                    if battleSummY > battleSummE:
-                        print("You win!")
-                        urRapper['fame'] += enemy['lvl'] * 15
-                        urRapper['money'] += enemy['lvl'] * 100
-                    elif battleSummY == battleSummE:
-                        print("Sosi jopy")
-                    else:
-                        print("You lose")
-                        urRapper['fame'] -= enemy['lvl'] * 15
-=======
             if len(r3Y) and len(r3E) == 2:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + 1
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
-                    print('===========================')
-                    print("Ресторатор с гордостью заявляет:", name, 'ПОБЕДИЛ ВЕЛИКОГО И УЖАСНОГО', enemy['name'],'!!!! ПОЗДРАВЛЯЮ ТЕБЯ С ПОБЕДОЙ!')
+                    print("You win!")
                     urRapper['fame'] += enemy['lvl'] * 15
                     urRapper['money'] += enemy['lvl'] * 100
-                    urRapper['lvl'] += 1
+                    enemies[urRapper['lvl']].pop(enemy_roll)
+
                 elif battleSummY == battleSummE:
                     print("Sosi jopy")
                 else:
                     print("You lose")
                     urRapper['fame'] -= enemy['lvl'] * 15
->>>>>>> 2ae281c26658463ddf271865e5b65fceab327218
 
 def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
@@ -252,7 +245,6 @@ def r1Ybattle():
 def r1Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r1E.append(enemy['bars'][eRandom]['points'])
-    print('\n'"Раунд противника: ")
     print(enemy['bars'][eRandom]['bars'])
 def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
@@ -262,7 +254,6 @@ def r2Ybattle():
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
-    print('\n'"Раунд противника: ")
     print(enemy['bars'][eRandom]['bars'])
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
@@ -272,7 +263,6 @@ def r3Ybattle():
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
-    print('\n'"Раунд противника: ")
     print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
@@ -289,9 +279,16 @@ def battle_bars():
         iBars += 1
     matchBars = list(zip(matchBars_1, matchBars_2))
 
+def day_skip_check():
+    if counts['battle'] - 7 == 0:
+        print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
+    elif counts['battle'] != '':
+        counts['day'] += 1
+        counts['battle'] += 1
+
 def statCheck():
     print('===========================')
-    print('Готовых треков:', studio_count)
+    print('Готовых треков:', counts['studio'])
     print('Ваше баблишко: ', urRapper['money'], '$')
     print('Известность: ', urRapper['fame'])
     print('===========================''\n')
@@ -334,10 +331,9 @@ millionTheme = [punchline_2, punchline_3]
 minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
+
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-day_count = 0
-studio_count = 0
-goal = 5
+
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -374,7 +370,7 @@ print('\n''Вы', name, 'и являетесь', character_result)
 
 while True:
     print('\n''===========================')
-    print('Настал', day_count, 'день... Что будем делать сегодня? ;)')
+    print('Настал', counts['day'], 'день... Что будем делать сегодня? ;)')
     print('===========================''\n')
     statCheck()
 
@@ -383,24 +379,33 @@ while True:
     print(' >3. Пойти в магазин')
     print(' >4. Сделать суицид')
     print(' >5. Арендовать студию звукозаписи''\n')
+
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        enemy_roll = random.randint(50,53)
-        if enemy_roll == yungleo['id']:
-            enemy = yungleo
-            battle()
-        elif enemy_roll == fiftydraem['id']:
-            enemy = fiftydraem
-            battle()
-        elif enemy_roll == lich['id']:
-            enemy = lich
-            battle()
-        elif enemy_roll == creeper['id']:
-            enemy = creeper
+        enemy_roll = random.randint(0, len(enemies[urRapper['lvl']])-1)
+        enemy = enemies[urRapper['lvl']][enemy_roll]
+
+        if counts['battle'] == '':
+            counts.update({'battle': 0})
+            print('\n'"Вы зарегестрировались на батл. Ваш батл с ", enemy['name'], "состоится через 7 дней")
+
+        elif counts['battle'] - 7 == 0:
+            print()
+            print("=> А Ф И Ш А <=".center(40, "-"))
+            print(name.center(40))
+            print("X".center(40))
+            print(enemy['name'].center(40))
             battle()
 
+        else:
+            print('\n'"Молодой, чо приперся? Твой батл с ", enemy['name'], "через ", 7 - counts['battle'], "дней"'\n')
+
+    elif daily_action == 2:
+        day_skip_check()
+
     elif daily_action == 3:
+        day_skip_check()
         if len(loot) == 0:
             shop_loop()
 
@@ -423,6 +428,7 @@ while True:
         quit()
 
     if daily_action == 5:
+        day_skip_check()
         while True:
             print('\n''===========================')
             print('Добро пожаловать в студию звукозаписи!''\n')
@@ -433,8 +439,8 @@ while True:
             if studio_action == 1:
                 r1Y = []
                 r2Y = []
-                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
-                print("You have: ")
+                print()
+                print("Выбери строчки для песни: ")
                 rBars = urRapper['bars'].copy()
                 battle_bars()
                 r1Ybattle()
