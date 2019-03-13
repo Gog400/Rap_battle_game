@@ -18,7 +18,8 @@ punchline_1 = {
     'mind_bars': 'У меня есть ~$%@&*! глок, ты - прилизаный $%@#&!~ок',
     'theme': 'gangsta',
     'points': 5,
-    'synergy': 1
+    'synY': 1,
+    'synergy': [2]
 }
 punchline_2 = {
     'id': 2,
@@ -26,7 +27,8 @@ punchline_2 = {
     'mind_bars': '?%№@#& @$№?*! - это смысл жизни. Я не ЧСВ, просто нет %№?@',
     'theme': 'million',
     'points': 5,
-    'synergy': 1
+    'synY': 2,
+    'synergy': [1]
 }
 punchline_3 = {
     'id': 3,
@@ -233,6 +235,7 @@ urRapper = {
     'lvl': '1',
     'regged': False
 }
+
 def battle():
     global r1Y
     global r2Y
@@ -240,13 +243,13 @@ def battle():
     global r1E
     global r2E
     global r3E
-    global rBars
     global r1YS
     global r2YS
     global r3YS
     global r1ES
     global r2ES
     global r3ES
+    global rBars
     print()
     print("Выбери одну из твоих строчек: ")
     rBars = urRapper['bars'].copy()
@@ -266,6 +269,7 @@ def battle():
     r1Ybattle()
     battle_bars()
     r1Ybattle()
+    r1SynY()
     print('\n'"Раунд противника: ")
     r1Ebattle()
     r1Ebattle()
@@ -289,8 +293,8 @@ def battle():
             r3Ebattle()
             print()
             if len(r3Y) and len(r3E) == 2:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
-                battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
+                battleSummY = total1Y + total2Y + total3Y
+                battleSummE = total1E + total2E + total3E
                 if battleSummY > battleSummE:
                     print("You win!")
                     urRapper['fame'] += enemy['lvl'] * 15
@@ -300,36 +304,96 @@ def battle():
                 else:
                     print("You lose")
                     urRapper['fame'] -= enemy['lvl'] * 15
+def r1SynY():
+    global total1Y
+    if r1YS[0]['synY'] in r1YS[1]['synergy']:
+        print("Ого, отличная комбинация строчек!")
+        total1Y = sum(r1Y)
+        total1Y *= 1.5
+    else:
+        total1Y = sum(r1Y)
+
+def r2SynY():
+    global total2Y
+    if r2YS[0]['synY'] in r2YS[1]['synergy']:
+        print("Ого, отличная комбинация строчек!")
+        total2Y = sum(r2Y)
+        total2Y *= 1.5
+    else:
+        total2Y = sum(r2Y)
+
+def r3SynY():
+    global total3Y
+    if r3YS[0]['synY'] in r3YS[1]['synergy']:
+        print("Ого, отличная комбинация строчек!")
+        total3Y = sum(r3Y)
+        total3Y *= 1.5
+    else:
+        total3Y = sum(r3Y)
+
+def r1SynE():
+    global total1E
+    if r1ES[0]['synY'] in r1ES[1]['synergy']:
+        print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
+        total1E = sum(r1E)
+        total1E *= 1.5
+    else:
+        total1E = sum(r1E)
+
+def r2SynE():
+    global total2E
+    if r2ES[0] == r2ES[1]:
+        print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
+        total2E = sum(r2E)
+        total2E *= 1.5
+    else:
+        total2E = sum(r2E)
+
+def r3SynE():
+    global total3E
+    if r3ES[0] == r3ES[1]:
+        print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
+        total3E = sum(r3E)
+        total3E *= 1.5
+    else:
+        total3E = sum(r3E)
 
 def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r1Y.append(matchBars[0][1]['points'])
+<<<<<<< HEAD
+=======
+        r1YS.append(matchBars[0][1])
+>>>>>>> 2de16a61c033ee9511cc3038fd35362eabf14fdc
         rBars.pop(matchBars[ansBars - 1][0] - 1)
-
 
 def r1Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r1E.append(enemy['bars'][eRandom]['points'])
-    r1ES.append(enemy['bars'][eRandom]['synergy'])
+    r1ES.append(enemy['bars'][eRandom])
     print(enemy['bars'][eRandom]['bars'])
+
 def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r2Y.append(matchBars[0][1]['points'])
         r2YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
+
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
     r2ES.append(enemy['bars'][eRandom]['synergy'])
     print(enemy['bars'][eRandom]['bars'])
+
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r3Y.append(matchBars[0][1]['points'])
         r3YS.append(matchBars[0][1]['synergy'])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
+
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
