@@ -33,7 +33,7 @@ punchline_3 = {
     'bars': 'Новый ламборгини, новые цацки. Моя жизнь - Каноха, а ты в ней Акацке',
     'mind_bars': 'Новый %@#$%?, новые цацки. Моя жизнь - Каноха, а ты в ней %$#@&№!',
     'theme': 'minecraft',
-    'points': 5
+    'points': 5,
 }
 punchline_4 = {
     'id': 4,
@@ -305,9 +305,6 @@ def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r1Y.append(matchBars[0][1]['points'])
-        r1YS.append(matchBars[0][1]['synergy'])
-        if r1YS[0] == r1YS[1]:
-            r1Y *= 1.5
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 
@@ -410,7 +407,7 @@ elephantTheme = [punchline_4, punchline_1]
 
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-
+knowledge_bars = [punchline_1, punchline_2,punchline_3,punchline_4,punchline_9]
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -456,7 +453,8 @@ while True:
     print(' >3. Пойти в магазин')
     print(' >4. Сделать суицид')
     print(' >5. Арендовать студию звукозаписи')
-    print(' >6. Выйти на улицу''\n')
+    print(' >6. Выйти на улицу')
+    print(' >7. Придумать новые строчки''\n')
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
@@ -553,7 +551,7 @@ while True:
         print('1. Идти на пары')
         print('2. Идти на завод')
         print('3. Зайти обратно домой')
-        street_action = int(input('Куда направляемся?'))
+        street_action = int(input('Куда направляемся: '))
         if street_action == 1:
             print('Вы пошли на пары. Там с вами кое-что произошло.')
             genre = []
@@ -575,22 +573,23 @@ while True:
                 continue
         elif street_action == 2:
             counts['day'] += 1
-            print('Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
-            factory_roll = random.randint(0,2)
-            if factory_roll == 0:
+            print('\n''Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
+            factory_var = ['good', 'bad', 'normal']
+            factory_roll = random.choices(factory_var, weights = [30,20,50])
+            if factory_roll == ['good']:
                 print('===========================')
                 print('Прораб, отсутствовавший в течении 6 месяцев, рассказал о каком-то "топ-донатере"')
                 print('который проспонсировал его на первой работе. На радостях, прораб даёт 1% вам.')
                 urRapper['money'] += 1000
                 continue
-            elif factory_roll == 1:
+            elif factory_roll == ['bad']:
                 print('===========================')
                 print('Недавно объявившийся прораб что-то бубнил про некий "бан",')
                 print('из-за которого его основной заработок прекратился.')
-                print('Собственно, поэтому он и задержал вам зарплату до лучших дней.')
+                print('Собственно, поэтому он и задержал вам зарплату до лучших дней, а также одолжил несколько долларов.')
                 urRapper['money'] -= 500
                 continue
-            elif factory_roll == 3:
+            elif factory_roll == ['normal']:
                 print('===========================')
                 print('Я пошутил, ничего не произошло. Вы отработали смену и получили деньги.')
                 urRapper['money'] += 500
@@ -598,3 +597,6 @@ while True:
         elif street_action == 3:
             print('Вы решили вернуться домой. На улице слишком холодно')
             continue
+    elif daily_action == 7:
+        a1 = random.randint(0, len(loot)-1)
+        john
