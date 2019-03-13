@@ -178,45 +178,19 @@ shop = {
 }
 urRapper = {
     'inv': [],
-    'bars': [punchline_1, punchline_2, punchline_3, punchline_4],
+    'bars': [punchline_1, punchline_2, punchline_3, punchline_4, punchline_9],
     'bg': 'none',
     'title': 'none',
     'money': 3000,
     'fame': 0
 }
-def r1Ybattle():
-    ansBars = int(input("Choose a punchline: "))
-    if ansBars == matchBars[ansBars - 1][0]:
-        r1Y.append(matchBars[0][1]['points'])
-        rBars.pop(matchBars[ansBars - 1][0] - 1)
-def r1Ebattle():
-    eRandom = random.randint(0, len(enemy['bars'])-1)
-    r1E.append(enemy['bars'][eRandom]['points'])
-    print("Раунд противника: ")
-    print(enemy['bars'][eRandom]['bars'])
-def r2Ybattle():
-    ansBars = int(input("Choose a punchline: "))
-    if ansBars == matchBars[ansBars - 1][0]:
-        r2Y.append(matchBars[0][1]['points'])
-        rBars.pop(matchBars[ansBars - 1][0] - 1)
-def r2Ebattle():
-    eRandom = random.randint(0, len(enemy['bars'])-1)
-    r2E.append(enemy['bars'][eRandom]['points'])
-    print("Раунд противника: ")
-    print(enemy['bars'][eRandom]['bars'])
-def r3Ybattle():
-    ansBars = int(input("Choose a punchline: "))
-    if ansBars == matchBars[ansBars - 1][0]:
-        r3Y.append(matchBars[0][1]['points'])
-        rBars.pop(matchBars[ansBars - 1][0] - 1)
-def r3Ebattle():
-    eRandom = random.randint(0, len(enemy['bars'])-1)
-    r3E.append(enemy['bars'][eRandom]['points'])
-    print("Раунд противника: ")
-    print(enemy['bars'][eRandom]['bars'])
-
-
 def battle():
+    global r1Y
+    global r2Y
+    global r3Y
+    global r1E
+    global r2E
+    global r3E
     global rBars
     print('\n''$$$$$$$$$$$$$$$$$$$$$$')
     print("You have: ")
@@ -229,14 +203,20 @@ def battle():
     r3E = []
     battle_bars()
     r1Ybattle()
+    r1Ybattle()
+    r1Ebattle()
     r1Ebattle()
     if len(r1Y) and len(r1E) == 2:
         battle_bars()
         r2Ybattle()
+        r2Ybattle()
+        r2Ebattle()
         r2Ebattle()
         if len(r2Y) and len(r2E) == 2:
             battle_bars()
             r3Ybattle()
+            r3Ybattle()
+            r3Ebattle()
             r3Ebattle()
 
             if len(r3Y) and len(r3E) == 2:
@@ -251,6 +231,37 @@ def battle():
                 else:
                     print("You lose")
                     urRapper['fame'] -= enemy['lvl'] * 15
+
+def r1Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r1Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r1Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r1E.append(enemy['bars'][eRandom]['points'])
+    print('\n'"Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
+def r2Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r2Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r2Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r2E.append(enemy['bars'][eRandom]['points'])
+    print('\n'"Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
+def r3Ybattle():
+    ansBars = int(input("Choose a punchline: "))
+    if ansBars == matchBars[ansBars - 1][0]:
+        r3Y.append(matchBars[0][1]['points'])
+        rBars.pop(matchBars[ansBars - 1][0] - 1)
+def r3Ebattle():
+    eRandom = random.randint(0, len(enemy['bars'])-1)
+    r3E.append(enemy['bars'][eRandom]['points'])
+    print('\n'"Раунд противника: ")
+    print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
     global matchBars_1
