@@ -362,10 +362,7 @@ def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r1Y.append(matchBars[0][1]['points'])
-<<<<<<< HEAD
-=======
         r1YS.append(matchBars[0][1])
->>>>>>> 2de16a61c033ee9511cc3038fd35362eabf14fdc
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r1Ebattle():
@@ -378,26 +375,26 @@ def r2Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r2Y.append(matchBars[0][1]['points'])
-        r2YS.append(matchBars[0][1]['synergy'])
+        r2YS.append(matchBars[0][1])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r2Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r2E.append(enemy['bars'][eRandom]['points'])
-    r2ES.append(enemy['bars'][eRandom]['synergy'])
+    r2ES.append(enemy['bars'][eRandom])
     print(enemy['bars'][eRandom]['bars'])
 
 def r3Ybattle():
     ansBars = int(input("Choose a punchline: "))
     if ansBars == matchBars[ansBars - 1][0]:
         r3Y.append(matchBars[0][1]['points'])
-        r3YS.append(matchBars[0][1]['synergy'])
+        r3YS.append(matchBars[0][1])
         rBars.pop(matchBars[ansBars - 1][0] - 1)
 
 def r3Ebattle():
     eRandom = random.randint(0, len(enemy['bars'])-1)
     r3E.append(enemy['bars'][eRandom]['points'])
-    r3ES.append(enemy['bars'][eRandom]['synergy'])
+    r3ES.append(enemy['bars'][eRandom])
     print(enemy['bars'][eRandom]['bars'])
 
 def battle_bars():
