@@ -26,7 +26,7 @@ punchline_1 = {
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'theme': 'gangsta',
     'points': 5,
-    'synergy': 2
+    'synergy': 1
 }
 punchline_2 = {
     'id': 2,
@@ -182,7 +182,8 @@ urRapper = {
     'bg': 'none',
     'title': 'none',
     'money': 3000,
-    'fame': 0
+    'fame': 0,
+    'lvl': 1
 }
 def battle():
     global r1Y
@@ -223,12 +224,14 @@ def battle():
             r3Ebattle()
 
             if len(r3Y) and len(r3E) == 2:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + 1
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
-                    print("You win!")
+                    print('===========================')
+                    print("Ресторатор с гордостью заявляет:", name, 'ПОБЕДИЛ ВЕЛИКОГО И УЖАСНОГО', enemy['name'],'!!!! ПОЗДРАВЛЯЮ ТЕБЯ С ПОБЕДОЙ!')
                     urRapper['fame'] += enemy['lvl'] * 15
                     urRapper['money'] += enemy['lvl'] * 100
+                    urRapper['lvl'] += 1
                 elif battleSummY == battleSummE:
                     print("Sosi jopy")
                 else:
