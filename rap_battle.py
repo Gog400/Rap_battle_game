@@ -579,7 +579,7 @@ while True:
             print(' >2. Посмотреть статистику')
             print(' >0. Выход')
             studio_action = int(input('Введите число: '))
-        if studio_action == 1:
+            if studio_action == 1:
                 r1Y = []
                 r2Y = []
                 print()
@@ -589,27 +589,26 @@ while True:
                 r1Ybattle()
                 r1Ybattle()
 
-                if len(r1Y) == 2:
-                    battle_bars()
-                    r2Ybattle()
-                    r2Ybattle()
-
-                    if r1Y[0] == r2Y[1]:
-                        studio_summ = sum(r1Y) + sum(r2Y)
-                        print(studio_summ)
-                    if studio_summ > 20:
-                        print('\n''Нормальный трек получился!!!')
-                    elif studio_summ == 20:
-                        print('\n''Сойдёт.')
-                    elif studio_summ < 20:
-                        print('\n''Ну и что за говно ты высрал?')
-                    counts['studio'] += 1
-                    print('Вы записали свой', counts['studio'], 'песню! Так держать!')
-                    print('Песен до записи альбома:', counts['goal'] - counts['studio'])
-        elif studio_action == 2:
-            statCheck()
-        else:
-            break
+            if len(r1Y) == 2:
+                battle_bars()
+                r2Ybattle()
+                r2Ybattle()
+                if r1Y[0] == r2Y[1]:
+                    studio_summ = sum(r1Y) + sum(r2Y)
+                    print(studio_summ)
+                if studio_summ > 20:
+                    print('\n''Нормальный трек получился!!!')
+                elif studio_summ == 20:
+                    print('\n''Сойдёт.')
+                elif studio_summ < 20:
+                    print('\n''Ну и что за говно ты высрал?')
+                counts['studio'] += 1
+                print('Вы записали свой', counts['studio'], 'песню! Так держать!')
+                print('Песен до записи альбома:', counts['goal'] - counts['studio'])
+            elif studio_action == 2:
+                statCheck()
+            else:
+                break
     elif daily_action == 6:
         print('Вы вышли на улицу. Тут холодно.')
         print('1. Идти на пары')
@@ -666,7 +665,13 @@ while True:
             a1 = random.randint(0, len(knowledge_loot)-1)
             knowledge_shop['slot1'] = knowledge_loot[a1]
             statCheck()
-            print('\n''Выберите вещи для покупки!')
-            print('1.', shop['slot1']['name'])
+            print('\n''Выберите строку для изучения!')
+            print('1.', knowledge_shop['slot1']['bars'])
+            print('2. Выйти')
             knowledge_action = int(input('Выберите уже знание: '))
-            urRapper['bars'].append(knowledge_shop['slot1'])
+            if knowledge_action == 1:
+                urRapper['bars'].append(knowledge_shop['slot1'])
+                day_skip_check()
+                break
+            if knowledge_action == 2:
+                break
