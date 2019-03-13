@@ -5,14 +5,14 @@ punchline_1 = {
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
     'theme': 'gangsta',
     'points': 5,
-    'synnergy': 2
+    'synergy': 2
 }
 punchline_2 = {
     'id': 2,
     'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
     'theme': 'million',
     'points': 5,
-    'synnergy': 1
+    'synergy': 1
 }
 punchline_3 = {
     'id': 3,
@@ -40,7 +40,7 @@ punchline_6 = {
 }
 punchline_7 = {
     'id': 7,
-    'bars': 'Твоя жопа прошита, как и мой ИксБокс. У тебя бомбит, ведь я здесь босс',
+    'bars': 'Занимаюсь спортом я',
     'theme': 'elephant',
     'points': 5
 }
@@ -50,43 +50,94 @@ punchline_8 = {
     'theme': 'elephant',
     'points': 5
 }
+punchline_9 = {
+    'id': 9,
+    'bars': 'Голые шреки и ослы',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_10 = {
+    'id': 10,
+    'bars': 'Как бывает приятно на природе',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_11 = {
+    'id': 11,
+    'bars': 'Деньги мне плати',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_12 = {
+    'id': 12,
+    'bars': 'Опа опа опа-па',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_13 = {
+    'id': 13,
+    'bars': 'От тебя пахнет дерьмом',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_14 = {
+    'id': 14,
+    'bars': 'Быть правым с зелеными наклонностями - как быть другом гитлера',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_15 = {
+    'id': 15,
+    'bars': 'Как эти комбо сраные сделать',
+    'theme': 'elephant',
+    'points': 5
+}
+punchline_16 = {
+    'id': 16,
+    'bars': 'И баффы еще...',
+    'theme': 'elephant',
+    'points': 5
+}
+
 yungleo = {
     'id': 50,
     'name': 'Yung Leo',
-    'bars': [punchline_2]
+    'bars': [punchline_5, punchline_6, punchline_7]
 }
 fiftydraem = {
     'id': 51,
     'name': 'Fifty Draem',
-    'bars': [punchline_1]
+    'bars': [punchline_8, punchline_9, punchline_10]
 }
 creeper = {
     'id': 52,
     'name': 'Kriper95',
-    'bars': [punchline_3]
+    'bars': [punchline_11, punchline_12, punchline_13]
 }
 lich = {
     'id': 53,
     'name': 'Lichinus',
-    'bars': [punchline_4]
-
+    'bars': [punchline_14, punchline_15, punchline_16]
 }
 GucciGlock = {
     'id': '100',
     'name': 'GucciGlock',
     'bars': 'У меня есть Гуччи глок, ты - прилизаный грибок',
+    'points': 5,
     'cost': 50
 }
 GucciBankroll = {
     'id': '101',
     'name': 'GucciBankroll',
     'bars': 'Гуччи бенкролл - это смысл жизни. Я не ЧСВ, просто нет корысти',
+    'points': 5,
     'cost': 75
 }
 NewLamborgini = {
     'id': '102',
     'name': 'NewLamborgini',
     'bars': 'Новый ламборгини, новые цацки. Моя жизнь - это Каноха, ты в ней Акацке',
+    'points': 5,
     'cost': 320
 }
 blank = {
@@ -102,13 +153,13 @@ shop = {
 }
 urRapper = {
     'inv': [],
-    'bars': [punchline_3, punchline_4, punchline_5, punchline_6, punchline_7, punchline_8],
+    'bars': [punchline_1, punchline_2, punchline_3, punchline_4],
     'bg': 'none',
     'title': 'none',
     'money': 3000
 }
 def battle():
-    global rBars
+    global rBars, won_battles, lost_battles
     print('\n''$$$$$$$$$$$$$$$$$$$$$$')
     print("You have: ")
     rBars = urRapper['bars'].copy()
@@ -148,14 +199,17 @@ def battle():
             print(enemy['bars'][eRandom]['bars'])
 
             if len(r3Y) and len(r3E) == 1:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + urRapper['inv']
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
                     print("You win!")
+                    won_battles += 1
+                    urRapper['money'] += 1000
                 elif battleSummY == battleSummE:
                     print("Sosi jopy")
                 else:
                     print("You lose")
+                    lost_battles += 1
 
 def battle_bars():
     global matchBars_1
@@ -206,9 +260,14 @@ minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
+global battle_count, battle_beggining
+battle_count = 0
+battle_beginning = 7
 day_count = 0
 studio_count = 0
 goal = 5
+won_battles = 0
+lost_battles = 0
 name = input('Введите своё имя: ')
 
 print('====================')
@@ -256,26 +315,42 @@ while True:
     print(' >3. Пойти в магазин')
     print(' >4. Сделать суицид')
     print(' >5. Арендовать студию звукозаписи')
+    print('Выигранных рэп баталий:', won_battles)
+    print('Проигранных рэп баталий:', lost_battles)
     print('Готовых треков:', studio_count)
+    print('Долларов:', urRapper['money'])
     print('День', day_count)
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        enemy_roll = random.randint(50,53)
-        if enemy_roll == yungleo['id']:
-            enemy = yungleo
-            battle()
-        elif enemy_roll == fiftydraem['id']:
-            enemy = fiftydraem
-            battle()
-        elif enemy_roll == lich['id']:
-            enemy = lich
-            battle()
-        elif enemy_roll == creeper['id']:
-            enemy = creeper
-            battle()
+        day_count += 1
+        print('Вы подошли к ресторатору, которого в кругу друзей зовут Hitman. Он записал вас на рэп битву, которая начнётся через 7 дней.')
 
+        battle_count = 1
+        battle_beggining = 7 - battle_count
+        battle_count += 1
+        if battle_beggining == 0:
+            enemy_roll = random.randint(50,53)
+            if enemy_roll == yungleo['id']:
+                enemy = yungleo
+
+            elif enemy_roll == fiftydraem['id']:
+                enemy = fiftydraem
+
+            elif enemy_roll == lich['id']:
+                enemy = lich
+
+            elif enemy_roll == creeper['id']:
+                enemy = creeper
+                battle()
+    elif daily_action == 2:
+        day_count += 1
+        battle_count += 1
+        print('Вы отдохнули')
+        continue
     elif daily_action == 3:
+        day_count += 1
+        battle_count += 1
         if len(loot) == 0:
             shop_loop()
 
@@ -300,12 +375,37 @@ while True:
         print('\n' 'ну и нахрена ты это сделал?')
         quit()
     if daily_action == 5:
-        if urRapper['money'] < 300:
-            print('Не хватает у тебя баблишка...')
-        if urRapper['money'] > 300:
-            studio_count += 1
-        print('\n''Вы успешно записали трек! Треков до победы:', goal - studio_count)
-    if studio_count == goal:
-        print('Вы записали свой ПЕРВЫЙ альбом, Красава!!!')
-        print('Игра пройдена, не забудьте оставить фидбек и поделиться с нами вашими деньгами! Удачи!')
-        exit()
+        day_count += 1
+        while True:
+            print('Добро пожаловать в студию звукозаписи!')
+            print('1. Записать песню')
+            print('2. Посмотреть статистику')
+            studio_action = int(input('Введите число: '))
+            if studio_action == 1:
+                r1Y = []
+                r2Y = []
+                print('\n''$$$$$$$$$$$$$$$$$$$$$$')
+                print("You have: ")
+                rBars = urRapper['bars'].copy()
+                battle_bars()
+                ansBars = int(input("Choose a punchline: "))
+                if ansBars == matchBars[ansBars - 1][0]:
+                    r1Y.append(matchBars[0][1]['points'])
+                    rBars.pop(matchBars[ansBars - 1][0] - 1)
+                if len(r1Y) == 1:
+                    battle_bars()
+                    ansBars = int(input('Choose a punchline2: '))
+                    if ansBars == matchBars[ansBars - 1][0]:
+                        r2Y.append(matchBars[0][1]['points'])
+                        rBars.pop(matchBars[ansBars - 1][0] - 1)
+                    studio_summ = sum(r1Y) + sum(r2Y)
+                    if studio_summ > 4:
+                        print('Нормальный трек получился!!!')
+                    if studio_summ == 4:
+                        print('Сойдёт.')
+                    if studio_summ < 4:
+                        print('Ну и что за говно ты высрал?')
+                    studio_count += 1
+                    print('Вы записали свой', studio_count, 'песню! Так держать!')
+                    print('Песен до записи альбома:', goal - studio_count)
+                    break
