@@ -268,14 +268,11 @@ while True:
         elif enemy_roll == fiftydraem['id']:
             enemy = fiftydraem
             battle()
-        elif enemy_roll == Lich['id']:
-            enemy = Lich
+        elif enemy_roll == lich['id']:
+            enemy = lich
             battle()
         elif enemy_roll == creeper['id']:
             enemy = creeper
-            battle()
-        elif enemy_roll == lich['id']:
-            enemy = lich
             battle()
 
     elif daily_action == 3:
