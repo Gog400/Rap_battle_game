@@ -203,18 +203,21 @@ def battle():
     r3E = []
     battle_bars()
     r1Ybattle()
+    battle_bars()
     r1Ybattle()
     r1Ebattle()
     r1Ebattle()
     if len(r1Y) and len(r1E) == 2:
         battle_bars()
         r2Ybattle()
+        battle_bars()
         r2Ybattle()
         r2Ebattle()
         r2Ebattle()
         if len(r2Y) and len(r2E) == 2:
             battle_bars()
             r3Ybattle()
+            battle_bars()
             r3Ybattle()
             r3Ebattle()
             r3Ebattle()
