@@ -281,7 +281,6 @@ def battle():
             r3Ebattle()
             print()
 
-<<<<<<< HEAD
                 if len(r3Y) and len(r3E) == 2:
                     battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                     battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
@@ -295,8 +294,6 @@ def battle():
                         print("You lose")
                         urRapper['fame'] -= enemy['lvl'] * 15
 
-=======
->>>>>>> 7b2e739db3a074902674d93117125e8fe3a7f347
             if len(r3Y) and len(r3E) == 2:
                 battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
