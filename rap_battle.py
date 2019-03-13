@@ -199,7 +199,7 @@ def battle():
             print(enemy['bars'][eRandom]['bars'])
 
             if len(r3Y) and len(r3E) == 1:
-                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + urRapper['inv']
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                 battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
                 if battleSummY > battleSummE:
                     print("You win!")
@@ -260,7 +260,6 @@ minecraftTheme = [punchline_3, punchline_2]
 elephantTheme = [punchline_4, punchline_1]
 
 loot = [GucciGlock, GucciBankroll, NewLamborgini]
-global battle_count, battle_beggining
 battle_count = 0
 battle_beginning = 7
 day_count = 0
@@ -328,7 +327,7 @@ while True:
 
         battle_count = 1
         battle_beggining = 7 - battle_count
-        battle_count += 1
+        battle_count += 1 #это финальный вариант, который не получился. Я раз 50 переписывал тут всё, но он не хочет реагировать на счетчик. пиздец кароче
         if battle_beggining == 0:
             enemy_roll = random.randint(50,53)
             if enemy_roll == yungleo['id']:
