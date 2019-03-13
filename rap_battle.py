@@ -10,7 +10,7 @@ counts = {
     'studio': 0,
     'day': 0,
     'goal': 5,
-    'battle': ''
+    'battle': 0
 }
 punchline_1 = {
     'id': 1,
@@ -230,7 +230,8 @@ urRapper = {
     'money': 3000,
     'genres': [],
     'fame': 0,
-    'lvl': '1'
+    'lvl': '1',
+    'regged': False
 }
 def battle():
     global r1Y
@@ -353,11 +354,14 @@ def battle_bars():
     matchBars = list(zip(matchBars_1, matchBars_2))
 
 def day_skip_check():
-    if counts['battle'] - 7 == 0:
-        print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
-    elif counts['battle'] != '':
+    if urRapper['regged'] == False:
+            counts['day'] += 1
+            counts['battle'] += 1
+    elif counts['day'] - counts['battle'] <= 6:
         counts['day'] += 1
-        counts['battle'] += 1
+    else:
+        print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
+
 
 def statCheck():
     print('===========================')
@@ -456,23 +460,27 @@ while True:
     daily_action = int(input('Ну что будем делать?: '))
 
     if daily_action == 1:
-        enemy_roll = random.randint(0, len(enemies[urRapper['lvl']])-1)
-        enemy = enemies[urRapper['lvl']][enemy_roll]
-
-        if counts['battle'] == '':
-            counts.update({'battle': 0})
+        if urRapper['regged'] == False:
+            global enemy_roll
+            global enemy
+            enemy_roll = random.randint(0, len(enemies[urRapper['lvl']])-1)
+            enemy = enemies[urRapper['lvl']][enemy_roll]
+            counts['battle'] = counts['day']
             print('\n'"Вы зарегестрировались на батл. Ваш батл с ", enemy['name'], "состоится через 7 дней")
+            urRapper['regged'] = True
 
-        elif counts['battle'] - 7 == 0:
+        elif counts['day'] - counts['battle'] >= 7:
             print()
             print("=> А Ф И Ш А <=".center(40, "-"))
             print(name.center(40))
             print("X".center(40))
             print(enemy['name'].center(40))
             battle()
+            urRapper['regged'] = False
+            counts['battle'] = 0
 
-        else:
-            print('\n'"Молодой, чо приперся? Твой батл с ", enemy['name'], "через ", 7 - counts['battle'], "дней"'\n')
+        elif urRapper['regged'] == True:
+            print('\n'"Молодой, чо приперся? Твой батл с ", enemy['name'], "через ", 7 - (counts['day'] - counts['battle']), "дней"'\n')
 
     elif daily_action == 2:
         day_skip_check()
