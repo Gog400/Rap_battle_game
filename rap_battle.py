@@ -172,7 +172,8 @@ urRapper = {
     'bg': 'none',
     'title': 'none',
     'money': 3000,
-    'fame': 0
+    'fame': 0,
+    'lvl': 1
 }
 def battle():
     if 7 - counts['battle']
@@ -213,6 +214,7 @@ def battle():
                 r3Ebattle()
                 r3Ebattle()
 
+<<<<<<< HEAD
                 if len(r3Y) and len(r3E) == 2:
                     battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y)
                     battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
@@ -225,6 +227,22 @@ def battle():
                     else:
                         print("You lose")
                         urRapper['fame'] -= enemy['lvl'] * 15
+=======
+            if len(r3Y) and len(r3E) == 2:
+                battleSummY = sum(r1Y) + sum(r2Y) + sum(r3Y) + 1
+                battleSummE = sum(r1E) + sum(r2E) + sum(r3E)
+                if battleSummY > battleSummE:
+                    print('===========================')
+                    print("Ресторатор с гордостью заявляет:", name, 'ПОБЕДИЛ ВЕЛИКОГО И УЖАСНОГО', enemy['name'],'!!!! ПОЗДРАВЛЯЮ ТЕБЯ С ПОБЕДОЙ!')
+                    urRapper['fame'] += enemy['lvl'] * 15
+                    urRapper['money'] += enemy['lvl'] * 100
+                    urRapper['lvl'] += 1
+                elif battleSummY == battleSummE:
+                    print("Sosi jopy")
+                else:
+                    print("You lose")
+                    urRapper['fame'] -= enemy['lvl'] * 15
+>>>>>>> 2ae281c26658463ddf271865e5b65fceab327218
 
 def r1Ybattle():
     ansBars = int(input("Choose a punchline: "))
