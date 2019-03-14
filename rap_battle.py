@@ -18,7 +18,7 @@ punchline_1 = {
     'mind_bars': 'У меня есть ~$%@&*! глок, ты - прилизаный $%@#&!~ок',
     'theme': 'gangsta',
     'points': 5,
-    'synY': 1,
+    'synY': '1',
     'synergy': [2]
 }
 punchline_2 = {
@@ -27,7 +27,7 @@ punchline_2 = {
     'mind_bars': '?%№@#& @$№?*! - это смысл жизни. Я не ЧСВ, просто нет %№?@',
     'theme': 'million',
     'points': 5,
-    'synY': 2,
+    'synY': '2',
     'synergy': [1]
 }
 punchline_3 = {
@@ -36,84 +36,112 @@ punchline_3 = {
     'mind_bars': 'Новый %@#$%?, новые цацки. Моя жизнь - Каноха, а ты в ней %$#@&№!',
     'theme': 'minecraft',
     'points': 5,
+    'synY': '3',
+    'synergy': [2, 4, 8]
 }
 punchline_4 = {
     'id': 4,
     'bars': 'Я биссексуал',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '4',
+    'synergy': [3, 8]
 }
 punchline_5 = {
     'id': 5,
     'bars': 'Потерял все признаки туриста, теперь гуляю по Европе, будто призрак коммунизма',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '5',
+    'synergy': [10, 14]
 }
 punchline_6 = {
     'id': 6,
     'bars': 'Я тебе кипу тку, на плите кипятку нагреваю, заливаю тебе в рот - Keep it cool!',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '6',
+    'synergy': [5, 10]
 }
 punchline_7 = {
     'id': 7,
     'bars': 'Занимаюсь спортом я',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '7',
+    'synergy': [8]
 }
 punchline_8 = {
     'id': 8,
     'bars': 'Твоя жопа прошита, как и мой ИксБокс. У тебя бомбит, ведь я здесь босс',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '8',
+    'synergy': [1, 7]
 }
 punchline_9 = {
     'id': 9,
     'bars': 'Голые шреки и ослы',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '9',
+    'synergy': [2, 14]
 }
 punchline_10 = {
     'id': 10,
     'bars': 'Как бывает приятно на природе',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '10',
+    'synergy': [3, 11]
 }
 punchline_11 = {
     'id': 11,
     'bars': 'Деньги мне плати',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '11',
+    'synergy': [4, 5]
 }
 punchline_12 = {
     'id': 12,
     'bars': 'Опа опа опа-па',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '12',
+    'synergy': [1,2]
 }
 punchline_13 = {
     'id': 13,
     'bars': 'От тебя пахнет дерьмом',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '13',
+    'synergy': [11, 12]
 }
 punchline_14 = {
     'id': 14,
     'bars': 'Быть правым с зелеными наклонностями - как быть другом гитлера',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '14',
+    'synergy': [16]
 }
 punchline_15 = {
     'id': 15,
     'bars': 'Как эти комбо сраные сделать',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '15',
+    'synergy': [16]
 }
 punchline_16 = {
     'id': 16,
     'bars': 'И баффы еще...',
     'theme': 'elephant',
-    'points': 5
+    'points': 5,
+    'synY': '16',
+    'synergy': [15]
 }
 
 yungleo = {
@@ -237,36 +265,49 @@ urRapper = {
     'lvl': '1',
     'regged': False
 }
-
+global r1YS
+global r2YS
+global r3YS
+global r1ES
+global r2ES
+global r3ES
+r1YS = []
+r2YS = []
+r3YS = []
+r1ES = []
+r2ES = []
+r3ES = []
+global r1Y
+global r2Y
+global r3Y
+global r1E
+global r2E
+global r3E
+r1Y = []
+r2Y = []
+r3Y = []
+r1E = []
+r2E = []
+r3E = []
+global total1Y
+global total2Y
+global total3Y
+global total1E
+global total2E
+global total3E
+total1Y = sum(r1Y)
+total2Y = sum(r2Y)
+total3Y = sum(r3Y)
+total1E = sum(r1E)
+total2E = sum(r2E)
+total3E = sum(r3E)
 def battle():
-    global r1Y
-    global r2Y
-    global r3Y
-    global r1E
-    global r2E
-    global r3E
-    global r1YS
-    global r2YS
-    global r3YS
-    global r1ES
-    global r2ES
-    global r3ES
+
     global rBars
     print()
     print("Выбери одну из твоих строчек: ")
     rBars = urRapper['bars'].copy()
-    r1Y = []
-    r2Y = []
-    r3Y = []
-    r1E = []
-    r2E = []
-    r3E = []
-    r1YS = []
-    r2YS = []
-    r3YS = []
-    r1ES = []
-    r2ES = []
-    r3ES = []
+
     battle_bars()
     r1Ybattle()
     battle_bars()
@@ -307,55 +348,43 @@ def battle():
                     print("You lose")
                     urRapper['fame'] -= enemy['lvl'] * 15
 def r1SynY():
-    global total1Y
     if r1YS[0]['synY'] in r1YS[1]['synergy']:
         print("Ого, отличная комбинация строчек!")
-        total1Y = sum(r1Y)
         total1Y *= 1.5
     else:
         total1Y = sum(r1Y)
 
 def r2SynY():
-    global total2Y
     if r2YS[0]['synY'] in r2YS[1]['synergy']:
         print("Ого, отличная комбинация строчек!")
-        total2Y = sum(r2Y)
         total2Y *= 1.5
     else:
         total2Y = sum(r2Y)
 
 def r3SynY():
-    global total3Y
     if r3YS[0]['synY'] in r3YS[1]['synergy']:
         print("Ого, отличная комбинация строчек!")
-        total3Y = sum(r3Y)
         total3Y *= 1.5
     else:
         total3Y = sum(r3Y)
 
 def r1SynE():
-    global total1E
     if r1ES[0]['synY'] in r1ES[1]['synergy']:
         print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
-        total1E = sum(r1E)
         total1E *= 1.5
     else:
         total1E = sum(r1E)
 
 def r2SynE():
-    global total2E
     if r1ES[0]['synY'] in r1ES[1]['synergy']:
         print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
-        total2E = sum(r2E)
         total2E *= 1.5
     else:
         total2E = sum(r2E)
 
 def r3SynE():
-    global total3E
     if r1ES[0]['synY'] in r1ES[1]['synergy']:
         print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
-        total3E = sum(r3E)
         total3E *= 1.5
     else:
         total3E = sum(r3E)
@@ -593,11 +622,14 @@ while True:
                 if len(r1Y) == 2:
                     battle_bars()
                     r2Ybattle()
+                    battle_bars()
                     r2Ybattle()
+                    r2SynY()
+
                     if r1Y[0] == r2Y[1]:
-                        studio_summ = sum(r1Y) + sum(r2Y)
-                        print(studio_summ)
+                        studio_summ = total1Y + total2Y
                     if studio_summ > 20:
+                        urRapper['money'] += studio_summ*10
                         print('\n''Нормальный трек получился!!!')
                     elif studio_summ == 20:
                         print('\n''Сойдёт.')
