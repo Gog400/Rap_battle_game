@@ -1,5 +1,20 @@
 import random
 
+class counts:
+    def __init__(self, studio, day, goal, battle, lvl, diffBattle, hype, urTotalPoints, enTotalPoints):
+        self.studio = studio
+        self.day = day
+        self.goal = goal
+        self.battle = battle
+        self.lvl = lvl
+        self.diffBattle = diffBattle
+        self.hype = hype
+        self.urTotalPoints = urTotalPoints
+        self.enTotalPoints = enTotalPoints
+
+count = counts(0, 0, 5, 0, 10, 7, 0, 0, 0)
+
+
 class punchline:
     def __init__(self, id, bars, mindBars, points, synergy):
         self.id = id
@@ -8,28 +23,15 @@ class punchline:
         self.synergy = synergy
         self.mindBars = mindBars
 
-class bStats:
-    def __init__(self, win, lose, draw):
-        self.win = win
-        self.lose = lose
-        self.draw = draw
+punch1 = punchline(1, "У меня есть Гуччи глок", "", 5, [2])
+punch2 = punchline(2, "Ты - прилизаный грибок", "", 5, [1])
+punch3 = punchline(3, "Гуччи бенкролл - это смысл жизни", "", 5, [4])
+punch4 = punchline(4, "Я не ЧСВ, просто нет корысти", "", 5, [3])
+punch5 = punchline(5, "Новый ламборгини, новые цацки", "", 5, [6])
+punch6 = punchline(6, "Моя жизнь - Каноха, а ты в ней Акацке", "", 5, [5])
+punch7 = punchline(7, "Потерял все признаки туриста", "", 5, [8])
+punch8 = punchline(8, "Теперь гуляю по Европе, будто призрак коммунизма", "", 5, [7])
 
-class counts:
-    def __init__(self, studio, day, goal, battle, lvl, diffBattle, hype):
-        self.studio = studio
-        self.day = day
-        self.goal = goal
-        self.battle = battle
-        self.lvl = lvl
-        self.diffBattle = diffBattle
-        self.hype = hype
-
-class enemy:
-    def __init__(self, id, name, bars, lvl):
-        self.id = id
-        self.name = name
-        self.bars = bars
-        self.lvl = lvl
 
 class item:
     def __init__(self, id, name, bars, points, cost):
@@ -38,6 +40,103 @@ class item:
         self.bars = bars
         self.points = points
         self.cost = cost
+
+item1 = item(100, "Gucci Glock", [punch1, punch2], 5, 100)
+item2 = item(101, "New NewLamborgini", [punch3, punch4], 5, 125)
+item3 = item(102, "Gucci Bankroll", [punch5, punch6], 5, 200)
+blank = item(999, "Пусто", [], 0, 0)
+
+
+class char:
+    def __init__(self, name, inv, bars, songlist, money, genres, fame, lvl, regged):
+        self.name = name
+        self.inv = inv
+        self.bars = bars
+        self.songlist = songlist
+        self.money = money
+        self.genres = genres
+        self.fame = fame
+        self.lvl = lvl
+        self.regged = regged
+
+    def statCheck(self):
+        print('===========================')
+        print('Ник: ', self.name)
+        print('Уровень: ', self.lvl, 'из', count.lvl)
+        print('Баблишко: ', self.money, '$')
+        print('Известность: ', self.fame)
+        if self.regged == True:
+            print('Батловый статус: Зарегистрирован (Через ', count.diffBattle - (count.day - count.battle), 'дней)')
+            print('===========================''\n')
+        else:
+            print('Батловый статус:  Не зарегистрирован')
+            print('===========================''\n')
+
+urRapper = char('urName', [item1, item2], [punch1, punch2, punch3, punch4, punch5, punch6], [], 1120, [], 0, 1, False)
+
+
+class track:
+    hype = int(urRapper.fame/(count.diffBattle*3))
+    def __init__(self, bars, points, rating, hype, name, authName):
+        self.bars = bars
+        self.points = points
+        self.rating = rating
+        self.hype = hype
+        self.name = name
+        self.authName = authName
+
+    def trackIncome(self):
+        urRapper.fame += (self.points / self.rating) * self.hype
+        global icn
+        icn = (urRapper.fame / (count.diffBattle / 2)) * self.hype
+        urRapper.money += icn
+
+    def ratingSort(self):
+        trackRange.itemsR.extend(trackRange.possR)
+        trackRange.itemsR.sort(key=self.points)
+
+    def hypeIncome(self):
+        a = count.hype + count.diffBattle * 2 - count.day
+        if count.day <= count.hype + count.diffBattle * 2:
+            self.hype = -0.5*a^2 + count.diffBattle * 2
+            count.hype += 1
+        else:
+            self.hype = 0
+
+    def songlistIncome():
+        for tr in urRapper.songlist:
+            tr.trackIncome()
+
+    def day_skip_check():
+        if urRapper.regged == False:
+                count.day += 1
+                count.battle += 1
+                track.songlistIncome()
+        elif count.day - count.battle <= 6:
+            count.day += 1
+            track.songlistIncome()
+        else:
+            print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
+
+class bStats:
+    def __init__(self, wins, lose, draw):
+        self.wins = wins
+        self.lose = lose
+        self.draw = draw
+
+class enemy:
+    def __init__(self, id, name, bars, lvl):
+        self.id = id
+        self.name = name
+        self.bars = bars
+        self.lvl = lvl
+
+urEnemy = enemy(999, "", [], 1)
+enemy1 = enemy(50, "Yung Leo", [punch1, punch2, punch3, punch4, punch5, punch6], 1)
+enemy2 = enemy(51, "Fifty draem", [punch3, punch4], 1)
+enemy3 = enemy(52, "Creeper95", [punch5, punch6], 1)
+enemy4 = enemy(53, "Lichinus", [punch7, punch8], 1)
+
 
 class shop:
     def __init__(self, slot1, slot2, slot3, loot):
@@ -104,6 +203,9 @@ class shop:
             self.loot.pop(c)
             self.shop_loop()
 
+shop1 = shop(blank, blank, blank, [item1, item2, item3])
+
+
 class possRange:
     def __init__(self, itemsR, possR):
         self.itemsR = itemsR
@@ -113,168 +215,101 @@ class possRange:
         for it in self.itemsR:
             if it.lvl == urRapper.lvl:
                 self.possR.append(it)
+enemyRange = possRange([enemy1, enemy2, enemy3, enemy4], [])
+trackRange = possRange([], [])
+possTrackInd = possRange([enemy1, enemy2, enemy3, enemy4], ['Dick', 'Cock', 'Max'])
+
+
+
 
 class round:
-    def __init__(self, urRnd, urTotalPoints, enRnd, enTotalPoints, numCounter, barCounter, nbCounter):
+    def __init__(self, urRnd, enRnd, numCounter, barCounter):
         self.urRnd = urRnd
-        self.urTotalPoints = urTotalPoints
         self.enRnd = enRnd
-        self.enTotalPoints = enTotalPoints
         self.numCounter = numCounter
         self.barCounter = barCounter
-        self.nbCounter = nbCounter
-
-    rBars = urRapper.bars.copy()
-    eBars = urEnemy.bars.copy()
 
     def urRound(self):
-        for itr in range(2):
+        for it in range(2):
+            self.numCounter.clear()
+            self.barCounter.clear()
             iBars = 1
             for bar in rBars:
                 self.numCounter.append(iBars)
                 self.barCounter.append(bar)
                 print(" >[", iBars, "]: ", bar.bars)
                 iBars += 1
-            self.nbCounter = list(zip(self.numCounter, self.nbCounter))
 
             ansBars = int(input("Выбери одну из доступных строчек: "))
-            if ansBars == self.nbCounter[ansBars - 1][0]:
-                self.urRnd.append(self.nbCounter[0][1])
-                rBars.pop(self.nbCounter[ansBars - 1][0] - 1)
+            if ansBars == self.numCounter[ansBars - 1]:
+                self.urRnd.append(self.barCounter[ansBars - 1])
+                rBars.remove(self.barCounter[ansBars - 1])
+        print('\n''Ваш раунд: ')
+        print(self.urRnd[0].bars)
+        print(self.urRnd[1].bars)
 
     def urSyn(self):
-        self.urTotalPoints = self.urRnd[0].points + self.urRnd[1].points
         if self.urRnd[0].id in self.urRnd[1].synergy:
-            self.urTotalPoints *= 1.5
-            print("Ого, отличная комбинация строчек!")
+            count.urTotalPoints += (self.urRnd[0].points + self.urRnd[1].points)*2
+            print('\n'"-Ого, отличная комбинация строчек! (У вас", count.urTotalPoints, 'очков)')
+        else:
+            count.urTotalPoints += (self.urRnd[0].points + self.urRnd[1].points)
+            print('\n'"-В следующий раз постарайся зарифмовать сторчки! (У вас", count.urTotalPoints, 'очков)')
         self.urRnd.clear()
 
     def enRound(self):
-        eRandom = random.randint(0, len(urEnemy.bars)-1)
-        self.enRnd.append(eBars.bars[eRandom])
         print('\n'"Раунд вашего противника: ")
-        print(eBars[eRandom].bars, '\n')
-        eBars.pop(enemy.bars[eRandom])
+        for it in range(2):
+            eRandom = random.randint(0, len(eBars)-1)
+            self.enRnd.append(eBars[eRandom])
+            print(eBars[eRandom].bars)
+            eBars.remove(eBars[eRandom])
+        print()
 
     def enSyn(self):
-        self.enTotalPoints = self.enRnd[0].points + self.enRnd[1].points
         if self.enRnd[0].id in self.enRnd[1].synergy:
-            self.enTotalPoints *= 1.5
-            print("Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался...")
+            count.enTotalPoints += (self.enRnd[0].points + self.enRnd[1].points)*2
+            print('\n'"-Ого, смотри какая у него отличная комбинация строчек! Ты реально обосрался... (У него", count.enTotalPoints, 'очков)')
+        else:
+            count.enTotalPoints += (self.enRnd[0].points + self.enRnd[1].points)
+            print("Ахаха, этот чел походу не знает, что строчки можно рифмовать! (У него", count.enTotalPoints, 'очков)')
         self.enRnd.clear()
 
-class char:
-    def __init__(self, name, inv, bars, songlist, money, genres, fame, lvl, regged):
-        self.name = name
-        self.inv = inv
-        self.bars = bars
-        self.songlist = songlist
-        self.money = money
-        self.genres = genres
-        self.fame = fame
-        self.lvl = lvl
-        self.regged = regged
-
-    def statCheck(self):
-        print('===========================')
-        print('Ник: ', self.name)
-        print('Уровень: ', self.lvl, 'из', count.lvl)
-        print('Баблишко: ', self.money, '$')
-        print('Прибыль с треков: ', icn, '$')
-        print('Известность: ', self.fame)
-        if self.regged == True:
-            print('Батловый статус: Зарегистрирован (Через ', count.diffBattle - (count.day - count.battle), 'дней)')
-            print('===========================''\n')
+    def battleResults(self):
+        if count.urTotalPoints > count.enTotalPoints:
+            print("Красава, я всегда знал, что у тебя есть талант! -Сказал Перфоратор и протянул вам ваш обещанный гонорар")
+            print("Приходи еще, мы найдем для тебя кого-то по сильнее")
+            print("Известность повышена: ", urRapper.fame, "->", urRapper.fame + urEnemy.lvl * 30)
+            print("Деньги получены: ", urRapper.money, "->", urRapper.money + urEnemy.lvl * 30)
+            urRapper.fame += urEnemy.lvl * 30
+            urRapper.money += urEnemy.lvl * 100
+        elif self.urTotalPoints == self.enTotalPoints:
+            print("Я думал ты норм пацан, а в итоге ты просто дефолтный челик... -Сказал Постмодернатор и направился к бару")
         else:
-            print('Батловый статус:  Не зарегистрирован')
-            print('===========================''\n')
+            print("После батла к вам вышел Псевдоинтеллектуатор и публично вас унизил")
+            print("Известность понижена: ", urRapper.fame, "->", urRapper.fame - urEnemy.lvl * 15)
+            urRapper.fame -= urEnemy.lvl * 15
+        count.urTotalPoints = 0
+        count.enTotalPoints = 0
 
-urRapper = char('urName', [item1, item2], [punch7, punch8], 1120, [], 0, 1, False)
+    def battle():
+                round1.urRound()
+                round1.urSyn()
+                round1.enRound()
+                round1.enSyn()
+                round2.urRound()
+                round2.urSyn()
+                round2.enRound()
+                round2.enSyn()
+                round3.urRound()
+                round3.urSyn()
+                round3.enRound()
+                round3.enSyn()
+                round3.battleResults()
 
-class track:
-    hype = int(urRapper.fame/(count.diffBattle*3))
-    def __init__(self, bars, points, rating, hype, name, authName):
-        self.bars = bars
-        self.points = points
-        self.rating = rating
-        self.hype = hype
-        self.name = name
-        self.authName = authName
-
-    def trackIncome(self):
-        urRapper.fame += (self.points / self.rating) * self.hype
-        global icn
-        icn = (urRapper.fame / (count.diffBattle / 2)) * self.hype
-        urRapper.money += icn
-
-    def ratingSort(self):
-        trackRange.itemsR.extend(trackRange.possR)
-        trackRange.itemsR.sort(key=self.points)
-
-    def hypeIncome(self):
-        a = count.hype + count.diffBattle * 2 - count.day
-        if count.day <= count.hype + count.diffBattle * 2:
-            self.hype = -0.5*a^2 + count.diffBattle * 2
-            count.hype += 1
-        else:
-            self.hype = 0
-
-    def songlistIncome():
-        for tr in urRapper.songlist:
-            tr.trackIncome()
-
-    def day_skip_check():
-        if urRapper.regged == False:
-                count.day += 1
-                count.battle += 1
-                songlistIncome()
-        elif count.day - count.battle <= 6:
-            count.day += 1
-            songlistIncome()
-        else:
-            print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
-
-count = counts(0, 0, 5, 0, 10, 7)
-
-punch1 = punchline(1, "У меня есть Гуччи глок", "", 5, [2])
-punch2 = punchline(2, "Ты - прилизаный грибок", "", 5, [1])
-punch3 = punchline(3, "Гуччи бенкролл - это смысл жизни", "", 5, [4])
-punch4 = punchline(4, "Я не ЧСВ, просто нет корысти", "", 5, [3])
-punch5 = punchline(5, "Новый ламборгини, новые цацки", "", 5, [6])
-punch6 = punchline(6, "Моя жизнь - Каноха, а ты в ней Акацке", "", 5, [5])
-punch7 = punchline(7, "Потерял все признаки туриста", "", 5, [8])
-punch8 = punchline(8, "Теперь гуляю по Европе, будто призрак коммунизма", "", 5, [7])
-
-item1 = item(100, "Gucci Glock", [punch1, punch2], 5, 100)
-item2 = item(101, "New NewLamborgini", [punch3, punch4], 5, 125)
-item3 = item(102, "Gucci Bankroll", [punch5, punch6], 5, 200)
-blank = item(999, "Пусто", [], 0, 0)
-
-shop1 = shop(blank, blank, blank, [item1, item2, item3])
-
-urEnemy = enemy(999, "", [], 1)
-enemy1 = enemy(50, "Yung Leo", [punch1, punch2], 1)
-enemy2 = enemy(51, "Fifty draem", [punch3, punch4], 1)
-enemy3 = enemy(52, "Creeper95", [punch5, punch6], 1)
-enemy4 = enemy(53, "Lichinus", [punch7, punch8], 1)
-
-enemyRange = possRange([enemy1, enemy2, enemy3, enemy4], [])
-trackRange = possRange([], [])
-possTrackInd = possRange([enemy1, enemy2, enemy3, enemy4], ['Dick', 'Cock', 'Max'])
-
-def battle():
-    round1.urRound()
-    round1.urSyn()
-    round1.enRound()
-    round1.enSyn()
-    round2.urRound()
-    round2.urSyn()
-    round2.enRound()
-    round2.enSyn()
-    round3.urRound()
-    round3.urSyn()
-    round3.enRound()
-    round3.enSyn()
+round1 = round([], [], [], [])
+round2 = round([], [], [], [])
+round3 = round([], [], [], [])
 
 while True:
     print('\n''===========================')
@@ -293,19 +328,23 @@ while True:
         if urRapper.regged == False:
             enemyRange.possEnemy()
             global enemy_roll
-            enemy_roll = random.randint(0, len(enemyRange.possR)-1)
+            enemy_roll = random.randint(0, 0) #len(enemyRange.possR)-1
             urEnemy = enemyRange.possR[enemy_roll]
             count.battle = count.day
             print('\n'"Вы зарегестрировались на батл. Ваш батл с ", urEnemy.name, "состоится через 7 дней")
             urRapper.regged = True
 
-        elif counts.day - counts.battle >= count.diffBattle:
+        elif count.day - count.battle >= count.diffBattle:
             print()
             print("=> А Ф И Ш А <=".center(40, "-"))
             print(urRapper.name.center(40))
             print("X".center(40))
             print(urEnemy.name.center(40))
-            battle()
+            global eBars
+            global rBars
+            eBars = urEnemy.bars.copy()
+            rBars = urRapper.bars.copy()
+            round.battle()
             urRapper.regged = False
             count.battle = 0
 
@@ -313,14 +352,14 @@ while True:
             print('\n'"Молодой, чо приперся? Твой батл с ", urEnemy.name, "через ", count.diffBattle - (count.day - count.battle), "дней"'\n')
 
     elif daily_action == 2:
-        count.day_skip_check()
+        track.day_skip_check()
 
     elif daily_action == 3:
-        count.day_skip_check()
+        track.day_skip_check()
         shop1.shop_pull()
 
     elif daily_action == 4:
-        count.day_skip_check()
+        track.day_skip_check()
         while True:
             print('\n''===========================')
             print('Добро пожаловать в студию звукозаписи!''\n')
@@ -333,8 +372,7 @@ while True:
                 round1.urRound()
                 round1.urSyn()
             elif studio_action == 2:
-                trackRange.ratingSort()
-
+                track.ratingSort()
                 sng = 0
                 for song in trackRange:
                     print('(', sng + 1, ')', trackRange[sng].name)
