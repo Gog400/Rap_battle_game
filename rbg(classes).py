@@ -25,12 +25,48 @@ class punchline:
 
 punch1 = punchline(1, "У меня есть Гуччи глок", "", 5, [2])
 punch2 = punchline(2, "Ты - прилизаный грибок", "", 5, [1])
+
 punch3 = punchline(3, "Гуччи бенкролл - это смысл жизни", "", 5, [4])
 punch4 = punchline(4, "Я не ЧСВ, просто нет корысти", "", 5, [3])
+
 punch5 = punchline(5, "Новый ламборгини, новые цацки", "", 5, [6])
 punch6 = punchline(6, "Моя жизнь - Каноха, а ты в ней Акацке", "", 5, [5])
+
 punch7 = punchline(7, "Потерял все признаки туриста", "", 5, [8])
 punch8 = punchline(8, "Теперь гуляю по Европе, будто призрак коммунизма", "", 5, [7])
+
+punch9 = punchline(9, "Твоя жопа прошита, как и мой ИксБокс", "", 5, [10])
+punch10 = punchline(10, "У тебя бомбит, ведь я здесь босс", "", 5, [9])
+
+punch11 = punchline(11, "Я тебе кипу тку, на плите кипятку", "", 5, [12])
+punch12 = punchline(12, "Нагреваю, заливаю в рот тебе: keep it cool!", "", 5, [11])
+
+punch13 = punchline(13, "Ты, по-моему, грозился мне драками, но куш мой", "", 5, [14])
+punch14 = punchline(14, "Я помою свой член в твоей раковине ушной", "", 5, [13])
+
+punch15 = punchline(15, "Твои слова это пиздёж и враки", "", 5, [16])
+punch16 = punchline(16, "Ты как глисты у Обамы - ты живешь в бараке", "", 5, [15])
+
+punch17 = punchline(17, "Это ноль-ноль-восемь, помни памятную дату", "", 5, [18])
+punch18 = punchline(18, "Мы вас разносим, будто в цирке сахарную вату", "", 5, [17])
+
+punch19 = punchline(19, "Твоя карьера, как тетрадка - серая и краткая", "", 5, [20])
+punch20 = punchline(20, "Её первая буква X, последняя - и-краткое", "", 5, [19])
+
+punch21 = punchline(21, "Ты не с улицы парень, ты просто суицидален", "", 5, [22])
+punch22 = punchline(22, "От того, что вы мне двадцать первый целуете палец", "", 5, [21])
+
+punch23 = punchline(23, "Ты читаешь про богов, про саги и легенды", "", 5, [24])
+punch24 = punchline(24, "Перестань выпендриваться, сын, ты сосал на weekend'ах", "", 5, [23])
+
+punch25 = punchline(25, "Я пуленепробиваемый, в буре не потомляемый", "", 5, [26])
+punch26 = punchline(26, "Дурень, тебя пинали мы! Хули вы залупались, блин", "", 5, [25])
+
+punch27 = punchline(27, "Вот и сорвана резьба, думал замес, будет резня", "", 5, [28])
+punch28 = punchline(28, "Помни, одна моя пешка пизже твоего ферзя", "", 5, [27])
+
+punch29 = punchline(29, "В тебе грайма нет, бро, ты - говноед", "", 5, [30])
+punch30 = punchline(30, "Твой флоу рогатка - мой арбалет", "", 5, [29])
 
 
 class item:
@@ -133,9 +169,9 @@ class enemy:
 
 urEnemy = enemy(999, "", [], 1)
 enemy1 = enemy(50, "Yung Leo", [punch1, punch2, punch3, punch4, punch5, punch6], 1)
-enemy2 = enemy(51, "Fifty draem", [punch3, punch4], 1)
-enemy3 = enemy(52, "Creeper95", [punch5, punch6], 1)
-enemy4 = enemy(53, "Lichinus", [punch7, punch8], 1)
+enemy2 = enemy(51, "Fifty draem", [punch7, punch8, punch9, punch10, punch11, punch12], 1)
+enemy3 = enemy(52, "Creeper95", [punch13, punch14, punch15, punch16, punch17, punch18], 1)
+enemy4 = enemy(53, "Lichinus", [punch19, punch20, punch21, punch22, punch23, punch24], 1)
 
 
 class shop:
@@ -328,7 +364,7 @@ while True:
         if urRapper.regged == False:
             enemyRange.possEnemy()
             global enemy_roll
-            enemy_roll = random.randint(0, 0) #len(enemyRange.possR)-1
+            enemy_roll = random.randint(0, len(enemyRange.possR)-1) #len(enemyRange.possR)-1
             urEnemy = enemyRange.possR[enemy_roll]
             count.battle = count.day
             print('\n'"Вы зарегестрировались на батл. Ваш батл с ", urEnemy.name, "состоится через 7 дней")
