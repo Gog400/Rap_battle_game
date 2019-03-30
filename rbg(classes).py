@@ -51,7 +51,7 @@ punch17 = punchline(17, "Это ноль-ноль-восемь, помни па�
 punch18 = punchline(18, "Мы вас разносим, будто в цирке сахарную вату", "", 5, [17])
 
 punch19 = punchline(19, "Твоя карьера, как тетрадка - серая и краткая", "", 5, [20])
-punch20 = punchline(20, "Её первая буква X, последняя - и-краткое", "", 5, [19])
+punch20 = punchline(20, 'Её первая буква "x", последняя - и-краткое', "", 5, [19])
 
 punch21 = punchline(21, "Ты не с улицы парень, ты просто суицидален", "", 5, [22])
 punch22 = punchline(22, "От того, что вы мне двадцать первый целуете палец", "", 5, [21])
@@ -84,7 +84,7 @@ blank = item(999, "Пусто", [], 0, 0)
 
 
 class char:
-    def __init__(self, name, inv, bars, songlist, money, genres, fame, lvl, regged):
+    def __init__(self, name, inv, bars, songlist, money, genres, fame, lvl, regged, beats, exp):
         self.name = name
         self.inv = inv
         self.bars = bars
@@ -94,11 +94,16 @@ class char:
         self.fame = fame
         self.lvl = lvl
         self.regged = regged
+        self.beats = beats
+        self.exp = exp
 
     def statCheck(self):
+        if self.exp == self.lvl*10:
+            self.exp -= self.lvl*10
+            self.lvl += 1
         print('===========================')
         print('Ник: ', self.name)
-        print('Уровень: ', self.lvl, 'из', count.lvl)
+        print('Уровень: ', self.lvl, 'из', count.lvl, '[', self.exp, '/', self.lvl*10, ']')
         print('Баблишко: ', self.money, '$')
         print('Известность: ', self.fame)
         if self.regged == True:
@@ -108,18 +113,19 @@ class char:
             print('Батловый статус:  Не зарегистрирован')
             print('===========================''\n')
 
-urRapper = char('urName', [item1, item2], [punch1, punch2, punch3, punch4, punch5, punch6], [], 1120, [], 0, 1, False)
+urRapper = char('urName', [item1, item2], [punch25, punch26, punch27, punch28, punch29, punch30], [], 1120, [], 0, 1, False, [], 0)
 
 
 class track:
     hype = int(urRapper.fame/(count.diffBattle*3))
-    def __init__(self, bars, points, rating, hype, name, authName):
+    def __init__(self, bars, points, rating, hype, name, authName, genre):
         self.bars = bars
         self.points = points
         self.rating = rating
         self.hype = hype
         self.name = name
         self.authName = authName
+        self.genre = genre
 
     def trackIncome(self):
         urRapper.fame += (self.points / self.rating) * self.hype
@@ -154,6 +160,25 @@ class track:
         else:
             print("Иди сначала на батл, чмо. Потом поспишь у своей параши")
 
+class beat:
+    def __init__(self, name):
+        self.name = name
+
+beat1 = beat("Grime beat")
+beat2 = beat("Minimalistic beat")
+beat3 = beat("Trap beat")
+beat4 = beat("Old school beat")
+
+class genre:
+    def __init__(self, name, beatCombo):
+        self.name = name
+        self.beatCombo = beatCombo
+
+genre1 = genre("Grime", beat1)
+genre2 = genre("Cloud rap", beat2)
+genre3 = genre("New school", beat3)
+genre4 = genre("Old school", beat4)
+
 class bStats:
     def __init__(self, wins, lose, draw):
         self.wins = wins
@@ -185,9 +210,9 @@ class shop:
         while True:
             print('\n''Ваше баблишко: ', urRapper.money, '$')
             print('\n''Выберите вещи для покупки!')
-            print('1.', self.slot1.name)
-            print('2.', self.slot2.name)
-            print('3.', self.slot3.name)
+            print('1.', self.slot1.cost, "$ -", self.slot1.name)
+            print('2.', self.slot2.cost, "$ -", self.slot2.name)
+            print('3.', self.slot3.cost, "$ -", self.slot3.name)
             print('0. Выход')
 
             buy = int(input('Введите число: '))
@@ -197,6 +222,8 @@ class shop:
                 else:
                     if urRapper.money >= self.slot1.cost:
                         urRapper.inv.append(self.slot1)
+                        urRapper.bars.append(self.slot1.bars[0])
+                        urRapper.bars.append(self.slot1.bars[1])
                         urRapper.money -= self.slot1.cost
                         self.slot1 = blank
                     else:
@@ -207,6 +234,8 @@ class shop:
                 else:
                     if urRapper.money >= self.slot2.cost:
                         urRapper.inv.append(self.slot2)
+                        urRapper.bars.append(self.slot2.bars[0])
+                        urRapper.bars.append(self.slot2.bars[1])
                         urRapper.money -= self.slot2.cost
                         self.slot2 = blank
                     else:
@@ -217,6 +246,8 @@ class shop:
                 else:
                     if urRapper.money >= self.slot3.cost:
                         urRapper.inv.append(self.slot3)
+                        urRapper.bars.append(self.slot3.bars[0])
+                        urRapper.bars.append(self.slot3.bars[1])
                         urRapper.money -= self.slot3.cost
                         self.slot3 = blank
             else:
@@ -251,12 +282,12 @@ class possRange:
         for it in self.itemsR:
             if it.lvl == urRapper.lvl:
                 self.possR.append(it)
+
 enemyRange = possRange([enemy1, enemy2, enemy3, enemy4], [])
+genreRange = possRange([genre1, genre2, genre3], []) ##!!!!!!!
+beatRange = possRange([beat1, beat2, beat3], []) ##!!!!!!!
 trackRange = possRange([], [])
 possTrackInd = possRange([enemy1, enemy2, enemy3, enemy4], ['Dick', 'Cock', 'Max'])
-
-
-
 
 class round:
     def __init__(self, urRnd, enRnd, numCounter, barCounter):
@@ -319,8 +350,10 @@ class round:
             print("Деньги получены: ", urRapper.money, "->", urRapper.money + urEnemy.lvl * 30)
             urRapper.fame += urEnemy.lvl * 30
             urRapper.money += urEnemy.lvl * 100
+            urRapper.exp += urEnemy.lvl* 2
         elif self.urTotalPoints == self.enTotalPoints:
             print("Я думал ты норм пацан, а в итоге ты просто дефолтный челик... -Сказал Постмодернатор и направился к бару")
+            urRapper.exp += urEnemy.lvl
         else:
             print("После батла к вам вышел Псевдоинтеллектуатор и публично вас унизил")
             print("Известность понижена: ", urRapper.fame, "->", urRapper.fame - urEnemy.lvl * 15)
@@ -346,6 +379,55 @@ class round:
 round1 = round([], [], [], [])
 round2 = round([], [], [], [])
 round3 = round([], [], [], [])
+
+class xActions:
+    def __init__(self, pr1, pr2, pr3):
+        self.pr1 = pr1
+        self.pr2 = pr2
+        self. pr3 = pr3
+
+    def Original_printing1(self):
+        orig = random.randint(0, len(self.pr1.prints)-1)
+        print(self.pr1.prints[orig])
+
+    def Original_printing2(self):
+        orig = random.randint(0, len(self.pr2.prints)-1)
+        print(self.pr2.prints[orig])
+
+    def Original_printing3(self):
+        orig = random.randint(0, len(self.pr3.prints)-1)
+        print(self.pr3.prints[orig])
+
+class action:
+    def __init__(self, prints):
+        self.prints = prints
+
+uni1 = action(['Ловя приход от университетских голубцов с яйцом, вы открываете новый жанр',
+                'Сидя в туалете, пукая, вы придумали новую ритмику. Новый жанр открыт',
+                'Царапая вилкой по тарелке, вы услышали новый звук и придумали новый жанр'])
+
+uni2 = action(['От голода в университетской столовке у вас происходит инсульт и вы забываете жанр',
+                'Подскальзнувишь, вы разбили туалетную плитку и забыли жанр',
+                'Вы отупели настолько, что просто забыли жанр'])
+
+uni3 = action(['Вы проучились весь день и даже получили 5 по математике.',
+                'Нормальный денёк сегодня был, эхх',
+                'Просидя 5 пар вы осознаёте, что учебный день окончился и решаете пойти домой'])
+
+fac1 = action(['Прораб, отсутствовавший в течении 6 месяцев, рассказал о каком-то "топ-донатере". На радостях, прораб даёт 1% вам.',
+                '"Нихуево ты отбатрачил сегодня!" -Сказал прараб и дал вам вашу зарплату',
+                'С ухмылкой на лице, вы крадёте туалетную бумагу из туалета, с мыслью потом ее продать. Вы чувствуете профитанычи'])
+
+fac2 = action(['Из-за некого "бана" основной заработок прараба прекратился. Собственно, поэтому он и задержал вам зарплату до лучших дней, а также одолжил несколько долларов.',
+                'Сегодня вы сломали станок. Вас оштрафовали на 40 Долларов',
+                'С криками "СЮДА, ШНЫРКУРЬЕРЫЧ!!!" вас оглушает прараб. На следующее утро вы просыпаетесь с отсутствующими 40 Долларами'])
+
+fac3 = action(['Я пошутил, ничего не произошло. Вы отработали смену и вас не уволили.',
+                'Прораб отказался вам платить зарплату из-за вашего смешного "реперского" внешнего вида',
+                'Вы хорошо поспали сегодня. Пора идти домой'])
+
+uniAction = xActions(uni1, uni2, uni3)
+facAction = xActions(fac1, fac2, fac3)
 
 while True:
     print('\n''===========================')
@@ -401,7 +483,8 @@ while True:
             print('Добро пожаловать в студию звукозаписи!''\n')
             print(' >1. Записать песню')
             print(' >2. Посмотреть топ чарты')
-            print(' >3. Придумать новые строчки')
+            print(' >3. Заказать новый бит')
+            print(' >4. Посмотреть свои навыки')
             print(' >0. Выход')
             studio_action = int(input('Введите число: '))
             if studio_action == 1:
@@ -412,6 +495,125 @@ while True:
                 sng = 0
                 for song in trackRange:
                     print('(', sng + 1, ')', trackRange[sng].name)
+
+            elif studio_action == 3:
+                print('\n''===========================')
+                print('Вы решили пополнить коллекцию своих битов!''\n')
+                print(' >1. Заказать у кореша(бесплатно)')
+                print(' >2. Заказать у норм битмейкера(100$)')
+                print(' >0. Назад')
+
+                beat_action = int(input('Введите число: '))
+                if beat_action == 1:
+                    if beatRange.itemsR != []:
+                        beat_roll = random.randint(0, len(beatRange.itemsR)-1)
+                        beatRange.possR.append(beatRange.itemsR[beat_roll])
+                        urRapper.beats.append(beatRange.itemsR[beat_roll])
+                        print('Кореш вам сделал ', beatRange.itemsR[beat_roll].name)
+                        beatRange.itemsR.pop(beat_roll)
+
+                    else:
+                        print(' >Вы изучили все возможные биты')
+
+                elif beat_action == 2:
+                    if beatRange.itemsR != []:
+                        print('Вам жопа!')
+                    else:
+                        print('\n'' >Вы изучили все возможные биты')
+
+                else:
+                    pass
+
+            elif studio_action == 4:
+                print('\n''===========================')
+                print('Ваши жанры: ')
+                for i in urRapper.genres:
+                    print(" -", i.name)
+
+                print('\n''===========================')
+                print('Ваши биты: ')
+                for i in urRapper.beats:
+                    print(" -", i.name)
+
+            else:
+                break
+
+    elif daily_action == 5:
+
+        print('\n''Вы вышли на улицу. Тут холодно.''\n')
+        print(' >1. Идти на пары')
+        print(' >2. Идти на завод')
+        print(' >3. Зайти обратно домой')
+        street_action = int(input('Куда направляемся: '))
+
+        while True:
+            if street_action == 1:
+                track.day_skip_check()
+                print('\n''Вы пошли на пары. Там с вами кое-что произошло.')
+                university_roll = random.choices([0, 1, 2], weights = [30, 20, 50])
+
+                if university_roll == [0]:
+                    if genreRange.itemsR != []:
+                        genre_roll = random.randint(0, len(genreRange.itemsR)-1)
+                        genreRange.possR.append(genreRange.itemsR[genre_roll])
+                        urRapper.genres.append(genreRange.itemsR[genre_roll])
+                        print('===========================')
+                        xActions.Original_printing1(uniAction)
+                        print("Жанр получен: ", genreRange.itemsR[genre_roll].name)
+                        genreRange.itemsR.pop(genre_roll)
+                        break
+                    else:
+                        print('Ёба, нафиг ты сюда ходишь? Ты тут всё уже изучил')
+
+                elif university_roll == [1]:
+                    if urRapper.genres != []:
+                        genre_roll = random.randint(0, len(urRapper.genres)-1)
+                        genreRange.itemsR.append(urRapper.genres[genre_roll])
+                        print('===========================')
+                        xActions.Original_printing2(uniAction)
+                        print("Жанр потерян: ", urRapper.genres[genre_roll].name)
+                        urRapper.genres.remove(urRapper.genres[genre_roll])
+                        genreRange.possR.pop(genre_roll)
+
+                        break
+                    else:
+                        print('Ёбать... Ты настолько тупой, что тебе нечего забывать')
+
+                elif university_roll == [2]:
+                    print('===========================')
+                    xActions.Original_printing3(uniAction)
+                    print("Опыт увеличен: ", urRapper.exp, "->", urRapper.exp * 1.1)
+                    urRapper.exp *= 1.1
+                    break
+
+            elif street_action == 2:
+                track.day_skip_check()
+                print('\n''Вы пошли на завод. Нормально так собрали мебель из IKEA, но кое-что с вами произошло.')
+                factory_roll = random.choices([0, 1, 2], weights = [30, 20, 50])
+
+                if factory_roll == [0]:
+                    print('===========================')
+                    xActions.Original_printing1(facAction)
+                    print("Деньги получены: ", urRapper.money, "->", urRapper.money + 100)
+                    urRapper.money += 100
+                    break
+
+                elif factory_roll == [1]:
+                    print('===========================')
+                    xActions.Original_printing2(facAction)
+                    print("Деньги потеряны: ", urRapper.money, "->", urRapper.money - 40)
+                    urRapper.money -= 40
+                    break
+
+                elif factory_roll == [2]:
+                    print('===========================')
+                    xActions.Original_printing3(facAction)
+                    print("Деньги получены: ", urRapper.money, "->", urRapper.money + 10)
+                    break
+
+            elif street_action == 3:
+                print('Вы решили вернуться домой. На улице слишком холодно')
+                break
 
     else:
         quit()
