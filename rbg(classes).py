@@ -284,8 +284,8 @@ class possRange:
                 self.possR.append(it)
 
 enemyRange = possRange([enemy1, enemy2, enemy3, enemy4], [])
-genreRange = possRange([genre1, genre2, genre3], []) ##!!!!!!!
-beatRange = possRange([beat1, beat2, beat3], []) ##!!!!!!!
+genreRange = possRange([genre1, genre2, genre3, genre4], []) ##!!!!!!!
+beatRange = possRange([beat1, beat2, beat3, beat4], []) ##!!!!!!!
 trackRange = possRange([], [])
 possTrackInd = possRange([enemy1, enemy2, enemy3, enemy4], ['Dick', 'Cock', 'Max'])
 
@@ -517,7 +517,27 @@ while True:
 
                 elif beat_action == 2:
                     if beatRange.itemsR != []:
-                        print('Вам жопа!')
+                        if urRapper.money > 100:
+                            print('Вам жопа!')
+                            urRapper.money -= 100
+
+                            bts = []
+                            ib = 1
+                            for i in beatRange.itemsR:
+                                print(' >[', ib,']: ', i.name)
+                                bts.append(i)
+                                ib += 1
+
+                            bts_action = int(input('Введите число: '))
+                            if bts_action == ib:
+                                urRapper.beats.append(bts[ib])
+                                print('Вам написали ', bts[ib].name)
+
+                            for i in urRapper.beats:
+                                print(i.name)
+
+                        else:
+                            print('Браток, приходи в другой раз. Бомжеват пока немного')
                     else:
                         print('\n'' >Вы изучили все возможные биты')
 
@@ -577,12 +597,12 @@ while True:
 
                         break
                     else:
-                        print('Ёбать... Ты настолько тупой, что тебе нечего забывать')
+                        print('Ебать... Ты настолько тупой, что тебе нечего забывать')
 
                 elif university_roll == [2]:
                     print('===========================')
                     xActions.Original_printing3(uniAction)
-                    print("Опыт увеличен: ", urRapper.exp, "->", urRapper.exp * 1.1)
+                    print("Опыт преумножен: ", urRapper.exp, "->", urRapper.exp * 1.1)
                     urRapper.exp *= 1.1
                     break
 
@@ -609,6 +629,7 @@ while True:
                     print('===========================')
                     xActions.Original_printing3(facAction)
                     print("Деньги получены: ", urRapper.money, "->", urRapper.money + 10)
+                    urRapper.money += 10
                     break
 
             elif street_action == 3:
